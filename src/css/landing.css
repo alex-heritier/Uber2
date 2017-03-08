@@ -1,0 +1,10 @@
+
+body {
+    background-image: url(../../resources/img/landing-bg.jpg);
+    background-size: cover;
+}
+
+.greeting-box {
+    margin-top: 50px;
+    opacity: 0.9;
+}
