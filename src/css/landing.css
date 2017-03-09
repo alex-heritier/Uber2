@@ -6,5 +6,25 @@ body {
 
 .greeting-box {
     margin-top: 50px;
-    opacity: 0.9;
+}
+
+.box {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.box p {
+    margin: auto;
+    background-color: #eee;
+    transition: background-color 0.2s ease;
+    border-radius: 80px;
+    width: 300px;
+    height: 140px;
+    line-height: 140px;
+    font-size: 4rem;
+}
+
+.box p:hover {
+    cursor: pointer;
+    background-color: #fff;
 }
