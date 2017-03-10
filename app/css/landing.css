@@ -4,7 +4,7 @@ body {
     background-size: cover;
 }
 
-.greeting-box {
+.content-box {
     margin-top: 50px;
 }
 
@@ -13,7 +13,8 @@ body {
     margin-bottom: 10px;
 }
 
-.box p {
+.box a {
+    color: black;
     margin: auto;
     background-color: #eee;
     transition: background-color 0.2s ease;
@@ -22,9 +23,12 @@ body {
     height: 140px;
     line-height: 140px;
     font-size: 4rem;
+    display: block;
 }
 
-.box p:hover {
+.box a:hover {
+    color: black;
     cursor: pointer;
+    text-decoration: none;
     background-color: #fff;
 }
