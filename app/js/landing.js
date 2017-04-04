@@ -1,5 +1,5 @@
 
-app.controller("landingCtrl", function($scope, userService) {
+app.controller("landingCtrl", function($scope, $location, userService) {
     $scope.login = function() {
         var user = {
             email: $scope.email,
@@ -9,6 +9,6 @@ app.controller("landingCtrl", function($scope, userService) {
         userService.setUser(user);
 
         // go to rider page
-        document.location.href="#/rider";
+        $location.path("/rider");
     };
 });

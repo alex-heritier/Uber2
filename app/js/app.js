@@ -1,5 +1,6 @@
 var app = angular.module("uber2", ["ngRoute"]);
 
+// ROUTES
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
