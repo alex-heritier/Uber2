@@ -3,19 +3,19 @@ var app = angular.module("uber2", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        controller: 'landingController',
+        controller: 'landingCtrl',
         templateUrl : "/app/pages/landing.html"
     })
     .when("/register", {
-        controller: 'registerController',
+        controller: 'registerCtrl',
         templateUrl : "/app/pages/register.html"
     })
     .when("/rider", {
-        controller: 'riderController',
+        controller: 'riderCtrl',
         templateUrl : "/app/pages/rider.html"
     })
     .when("/driver", {
-        controller: 'driverController',
+        controller: 'driverCtrl',
         templateUrl : "/app/pages/driver.html"
     })
     .otherwise({

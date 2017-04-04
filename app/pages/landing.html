@@ -1,28 +1,26 @@
 <!-- landing.html CSS -->
 <link href="/app/css/landing.css"  rel="stylesheet" type="text/css"  />
 
-<div>
-    <div class="jumbotron content-box">
-        <h1>Uber2</h1>
-        <p>Turning kilometers into cash.</p>
-        <button type="button" class="btn btn-primary" onclick="document.location.href='#/about'">Sign me up!</button>
+<div class="jumbotron content-box">
+    <h1>Uber2</h1>
+    <p>Turning kilometers into cash.</p>
+    <button type="button" class="btn btn-primary" onclick="document.location.href='#/register'">Sign me up!</button>
+</div>
+<div class="row">
+    <div class="col-xs-1 col-md-4"></div>
+    <div class="col-xs-10 col-md-4 login-box">
+        <h3>Login</h3>
+        <form>
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" class="form-control" placeholder="Email" ng-model="email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" class="form-control" placeholder="Password" ng-model="password">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="login()">Login</button>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-xs-1 col-md-4 spacer-box"></div>
-        <div class="col-xs-10 col-md-4 login-box">
-            <h3>Login</h3>
-            <form>
-                <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" class="form-control" placeholder="Email" ng-model="email">
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" ng-model="password">
-                </div>
-                <button type="submit" class="btn btn-default">Login</button>
-            </form>
-        </div>
-        <div class="col-xs-1 col-md-4 spacer-box"></div>
-    </div>
+    <div class="col-xs-1 col-md-4"></div>
 </div>

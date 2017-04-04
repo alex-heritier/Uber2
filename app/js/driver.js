@@ -1,4 +1,4 @@
 
-app.controller("driverController", function($scope) {
+app.controller("driverCtrl", function($scope) {
 
 });

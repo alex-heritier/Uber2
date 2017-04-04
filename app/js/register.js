@@ -1,4 +1,4 @@
 
-app.controller("registerController", function($scope) {
+app.controller("registerCtrl", function($scope) {
 
 });
