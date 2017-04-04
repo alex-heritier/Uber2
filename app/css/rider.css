@@ -1,7 +1,17 @@
-
 body {
     background-image: url(/app/img/landing-bg.jpg);
     background-size: cover;
+}
+
+#map {
+    height: 600px;
+	width: 1140px;
+	overflow: visible;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .content-box {
@@ -25,6 +35,7 @@ body {
     font-size: 4rem;
     display: block;
 }
+
 
 .box a:hover {
     color: black;
