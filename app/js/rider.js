@@ -99,13 +99,11 @@ app.controller("riderCtrl", function($scope, $http, userService) {
       			var results = response.rows[i].elements;
       			for (var j = 0; j < results.length; j++) {
         			var element = results[j];
-        			document.getElementById("distance").innerHTML =
-                        element.distance.text;
-        			document.getElementById("duration").innerHTML =
-                        element.duration.text;
+        			$scope.distance = element.distance.text;
+        			$scope.duration = element.duration.text;
     				var cost = element.distance.value*0.002;
     				cost = parseFloat(Math.round(cost * 100) / 100).toFixed(2);
-    				document.getElementById("cost").innerHTML = cost;
+    				$scope.cost = cost;
         			var from = origins[i];
         			var to = destinations[j];
   				}
