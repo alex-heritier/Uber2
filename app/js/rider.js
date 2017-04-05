@@ -19,22 +19,39 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         $scope.map = map;
         console.log($scope.map);
     };
+	$scope.getETA = function(map){
 
-	$scope.add = function(url) {
-        $http.get(url).then(function(response) {
-            $scope.distance = response.data.row.element.distance.text;
-            $scope.time = response.data.row.element.duration.text;
-            $scope.messages.push($scope.newMessage);
-        });
-    };
+	var origin1 = map.getCenter();
+	if($scope.address) var destinationA = $scope.address;
+	
+	var service = new google.maps.DistanceMatrixService();
+	service.getDistanceMatrix(
+ 	 {
+  	 	 origins: [origin1],
+  		 destinations: [destinationA],
+   		 travelMode: 'DRIVING',
+   		 unitSystem: google.maps.UnitSystem.IMPERIAL,
+  	}, callback);
+	}
 
-	ETA_BASE_URL = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial';
-	KEY = 'AIzaSyBC7wNk8LezGmsO1FLz2xH8Twz0j5VPEF8';
-	var origin = '37.335,-121.881';
-	//var destination = $scope.address;
-	var destination = '200 E Santa Clara St San Jose CA';
-	if (destination) destination.replace(/ /g, "+");
-	//var url = ETA_BASE_URL + '&origin='+origin+'&destination='+destination+'&key='+KEY;
-	var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=272+E+Santa+Clara+St+San+Jose+CA&destinations=1+Washington+Sq+San+Jose+CA&key=AIzaSyBC7wNk8LezGmsO1FLz2xH8Twz0j5VPEF8';
-	$scope.add(url);
+	function callback(response, status) {
+	if (status == 'OK') {
+    		var origins = response.originAddresses;
+    		var destinations = response.destinationAddresses;
+
+    		for (var i = 0; i < origins.length; i++) {
+      			var results = response.rows[i].elements;
+      			for (var j = 0; j < results.length; j++) {
+        			var element = results[j];
+        			document.getElementById("distance").innerHTML = 					element.distance.text;
+        			document.getElementById("duration").innerHTML = 					element.duration.text;
+        			var from = origins[i];
+        			var to = destinations[j];
+      				}
+    			}
+  		}
+	}
+
+
+	
 });
