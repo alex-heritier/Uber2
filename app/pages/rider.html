@@ -2,58 +2,62 @@
 <link href="/app/css/rider.css"  rel="stylesheet" type="text/css"  />
 
 <div class="jumbotron content-box">
-<h1>Rider Page</h1>
+    <h1>Rider Page</h1>
 </div>
+
 <div class="jumbotron content-box">
-<form>
-            <div class="form-group">
-                <label for="destination">Enter your destination: </label>
-				<input type="search" class="form-control" placeholder="For example: 1 Washington Square San Jose CA" ng-model="address">
-            </div>
-</form>
-<div ng-app = "uber2" ng-controller="riderCtrl">
-<ul>
-<li>Distance: <span ng-bind="distance"></span></li>
-<li>Time: <span ng-bind="time"></span></li> 
-</ul>
+    <form>
+        <div class="form-group">
+            <label for="destination">Enter your destination: </label>
+    		<input type="search" class="form-control" placeholder="For example: 1 Washington Square San Jose CA" ng-model="address">
+        </div>
+    </form>
+
+    <ul>
+        <li>Distance: <span ng-bind="distance"></span></li>
+        <li>Time: <span ng-bind="time"></span></li>
+    </ul>
+
+    <div id="map"></div>
+    </div>
 </div>
-<div id="map"></div>
-</div>
-    <script>
-      var map;
-      function initMap() {
+
+<!-- GOOGLE MAPS -->
+<script>
+    var map;
+    function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.335, lng: -121.881},
-          zoom: 8
+            center: {lat: 37.335, lng: -121.881},
+            zoom: 8
         });
-	var infoWindow = new google.maps.InfoWindow({map: map});
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
         } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
         }
-      }
+    }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-	}
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC7wNk8LezGmsO1FLz2xH8Twz0j5VPEF8&callback=initMap"
-    async defer></script>
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC7wNk8LezGmsO1FLz2xH8Twz0j5VPEF8&callback=initMap" async defer></script>
