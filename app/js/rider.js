@@ -15,6 +15,11 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         $scope.onLoad();
     });
 
+    $scope.initMap = function(map) {
+        $scope.map = map;
+        console.log($scope.map);
+    };
+
 	$scope.add = function(url) {
         $http.get(url).then(function(response) {
             $scope.distance = response.data.row.element.distance.text;

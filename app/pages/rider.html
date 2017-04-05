@@ -51,6 +51,9 @@
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
         }
+
+        // enter riderCtrl
+        angular.element($('#map')).scope().initMap(map);
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
