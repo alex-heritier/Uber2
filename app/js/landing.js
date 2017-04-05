@@ -1,3 +1,4 @@
+'use strict';
 
 app.controller("landingCtrl", function($scope, $location, userService) {
     $scope.login = function() {
