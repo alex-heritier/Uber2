@@ -11,6 +11,10 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         console.log(user);
     };
 
+    $scope.setDestination = function() {
+	var address = $scope.address;
+	}
+
     $scope.$on('$routeChangeSuccess', function () {
         $scope.onLoad();
     });
@@ -23,6 +27,7 @@ app.controller("riderCtrl", function($scope, $http, userService) {
 
 	var origin1 = map.getCenter();
 	if($scope.address) var destinationA = $scope.address;
+	else destinationA = '200 E Santa Clara St San Jose CA';
 	
 	var service = new google.maps.DistanceMatrixService();
 	service.getDistanceMatrix(
@@ -45,6 +50,9 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         			var element = results[j];
         			document.getElementById("distance").innerHTML = 					element.distance.text;
         			document.getElementById("duration").innerHTML = 					element.duration.text;
+				var cost = element.distance.value*0.002;
+				cost =parseFloat(Math.round(cost * 100) / 100).toFixed(2);
+				document.getElementById("cost").innerHTML = cost;
         			var from = origins[i];
         			var to = destinations[j];
       				}

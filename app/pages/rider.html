@@ -10,13 +10,14 @@
         <div class="form-group">
             <label for="destination">Enter your destination: </label>
     		<input type="text" class="form-control" placeholder="For example: 1 Washington Square San Jose CA" ng-model="address">
-	<button type="submit" class="btn btn-default" >Get ETA</button>
+	<button type="submit" class="btn btn-default" ng-click="getETA(map)">Get ETA</button>
         </div>
     </form>
 
     <ul>
         <li>Distance: <span id="distance"></span></li>
         <li>Time: <span id="duration"></span></li>
+	<li>Cost: $<span id="cost"></span></li>
     </ul>
 
     <div id="map"></div>
@@ -56,7 +57,7 @@
         // enter riderCtrl
         angular.element($('#map')).scope().initMap(map);
 	var destination = '3434 Silver Creek Rd, San Jose, CA';
-	angular.element($('#map')).scope().getETA(map);
+	//angular.element($('#map')).scope().getETA(map);
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
