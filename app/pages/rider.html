@@ -2,9 +2,23 @@
 <link href="/app/css/rider.css"  rel="stylesheet" type="text/css"  />
 
 <div class="jumbotron content-box">
-<h1>Rider Page </h1>
+<h1>Rider Page</h1>
+</div>
+<div class="jumbotron content-box">
+<form>
+            <div class="form-group">
+                <label for="destination">Enter your destination: </label>
+				<input type="search" class="form-control" placeholder="For example: 1 Washington Square San Jose CA" ng-model="address">
+            </div>
+</form>
+<div ng-app = "uber2" ng-controller="riderCtrl">
+<ul>
+<li>Distance: <span ng-bind="distance"></span></li>
+<li>Time: <span ng-bind="time"></span></li> 
+</ul>
 </div>
 <div id="map"></div>
+</div>
     <script>
       var map;
       function initMap() {
