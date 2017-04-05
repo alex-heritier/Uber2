@@ -37,6 +37,27 @@ app.controller("riderCtrl", function($scope, $http, userService) {
    		 travelMode: 'DRIVING',
    		 unitSystem: google.maps.UnitSystem.IMPERIAL,
   	}, callback);
+
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	var request = {
+    		origin: origin1,
+    		destination: destinationA,
+    		travelMode: 'DRIVING'
+  		};
+	
+ 	directionsDisplay = new google.maps.DirectionsRenderer(); 				var mapOptions = {
+    			zoom:7,
+    			center: origin1
+ 	 		}
+ 	map = new google.maps.Map(document.getElementById('map'),mapOptions);
+  	directionsDisplay.setMap(map);
+		
+	directionsService.route(request, function(result, status) {
+    		if (status == 'OK') {
+      		directionsDisplay.setDirections(result);
+   	 	}
+  	});
 	}
 
 	function callback(response, status) {
@@ -59,7 +80,4 @@ app.controller("riderCtrl", function($scope, $http, userService) {
     			}
   		}
 	}
-
-
-	
 });
