@@ -1,34 +1,26 @@
 
 body {
-    background-image: url(/app/img/landing-bg.jpg);
+    background-image: url(../img/landing-bg.jpg);
     background-size: cover;
 }
 
-.content-box {
+.title-box {
     margin-top: 50px;
 }
 
-.box {
+.register-box {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.register-box h3 {
     text-align: center;
+}
+
+.register-box button {
     margin-bottom: 10px;
 }
 
-.box a {
-    color: black;
-    margin: auto;
-    background-color: #eee;
-    transition: background-color 0.2s ease;
-    border-radius: 80px;
-    width: 300px;
-    height: 140px;
-    line-height: 140px;
-    font-size: 4rem;
-    display: block;
-}
-
-.box a:hover {
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-    background-color: #fff;
+#register-alert {
+    display: none;
 }

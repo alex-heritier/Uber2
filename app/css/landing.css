@@ -1,7 +1,6 @@
 
 body {
-    background-image: url(/app/img/landing-bg.jpg);
-    background-size: cover;
+    background-image: url(../img/landing-bg.jpg);
 }
 
 .content-box {
@@ -19,4 +18,12 @@ body {
 
 .login-box h3 {
     text-align: center;
+}
+
+.login-box button {
+    margin-bottom: 10px;
+}
+
+#login-alert {
+    display: none;
 }

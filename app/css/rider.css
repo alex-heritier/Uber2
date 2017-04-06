@@ -1,17 +1,19 @@
 body {
-    background-image: url(/app/img/landing-bg.jpg);
+    background-image: url(../img/landing-bg.jpg);
     background-size: cover;
 }
 
-#map 
-{
-	height: 500px;
-    	width: 100%;
+#map {
+	height: 220px;
+    width: 100%;
 }
 
+.title-box {
+    margin-top: 30px;
+}
 
 .content-box {
-    margin-top: 50px;
+    height: 450px;
 }
 
 .box {

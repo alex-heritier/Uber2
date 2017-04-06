@@ -13,7 +13,7 @@ app.controller("riderCtrl", function($scope, $http, userService) {
     };
 
     $scope.setDestination = function() {
-	var address = $scope.address;
+	    var address = $scope.address;
 	}
 
     $scope.$on('$routeChangeSuccess', function () {

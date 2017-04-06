@@ -1,6 +1,6 @@
 
 body {
-    background-image: url(/app/img/landing-bg.jpg);
+    background-image: url(../img/landing-bg.jpg);
     background-size: cover;
 }
 

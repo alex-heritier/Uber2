@@ -1,5 +1,16 @@
 'use strict';
 
+// set javascript root
+switch (document.location.hostname)
+{
+    case 'www.alexheritier.com':
+    case 'alexheritier.com':
+        window.root = '/uber2/'; break;
+    case 'localhost' :
+        window.root = '/'; break;
+    default :  // set whatever you want
+}
+
 var app = angular.module("uber2", ["ngRoute"]);
 
 // ROUTES
@@ -7,21 +18,21 @@ app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
         controller: 'landingCtrl',
-        templateUrl : "/app/pages/landing.html"
+        templateUrl : window.root + "app/pages/landing.html"
     })
     .when("/register", {
         controller: 'registerCtrl',
-        templateUrl : "/app/pages/register.html"
+        templateUrl : window.root + "app/pages/register.html"
     })
     .when("/rider", {
         controller: 'riderCtrl',
-        templateUrl : "/app/pages/rider.html"
+        templateUrl : window.root + "app/pages/rider.html"
     })
     .when("/driver", {
         controller: 'driverCtrl',
-        templateUrl : "/app/pages/driver.html"
+        templateUrl : window.root + "app/pages/driver.html"
     })
     .otherwise({
-        redirectTo: '/'
+        redirectTo: window.root + "app/"
     });
 });
