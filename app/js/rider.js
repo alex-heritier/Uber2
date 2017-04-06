@@ -53,6 +53,7 @@ app.controller("riderCtrl", function($scope, $http, userService) {
                 handleLocationError(false, infoWindow, map.getCenter());
         }
     };
+
 	$scope.getETA = function(map) {
     	var origin1 = map.getCenter();
     	if ($scope.address) var destinationA = $scope.address;
@@ -79,7 +80,7 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         var mapOptions = {
             zoom:7,
             center: origin1
-        }
+        };
      	map = new google.maps.Map(document.getElementById('map'),mapOptions);
       	directionsDisplay.setMap(map);
 
