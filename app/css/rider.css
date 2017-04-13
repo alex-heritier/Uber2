@@ -4,7 +4,7 @@ body {
 }
 
 #map {
-	height: 220px;
+	height: 600px;
     width: 100%;
 }
 
@@ -13,7 +13,7 @@ body {
 }
 
 .content-box {
-    height: 450px;
+    height: 920px;
 }
 
 .box {
@@ -33,7 +33,6 @@ body {
     font-size: 4rem;
     display: block;
 }
-
 
 .box a:hover {
     color: black;

@@ -19,9 +19,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// check for duplicates
+$sql = "SELECT * FROM users WHERE email='$user_email'";
+if ($result = $conn->query($sql)) {
+    echo "false";
+    return;
+}
+
+// insert new user
 $sql = "INSERT INTO users (email, pass, `driver?`) "
     . "VALUE ('$user_email', '$user_pass', '$user_driver_status')";
-
 if ($result = $conn->query($sql)) {
     echo "true";
 } else {

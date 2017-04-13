@@ -37,6 +37,6 @@ app.config(function($routeProvider) {
         templateUrl : window.root + "app/pages/about.html"
     })
     .otherwise({
-        redirectTo: window.root + "app/"
+        redirectTo: "/"
     });
 });
