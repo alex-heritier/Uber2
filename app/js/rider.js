@@ -1,15 +1,17 @@
 'use strict';
 
-app.controller("riderCtrl", function($scope, $http, userService) {
-    $scope.onLoad = function() {
-        var user = userService.getUser();
+app.controller("riderCtrl", function($scope, userService) {
+    $scope.init = function() {
+        $scope.canSubmit = false;
+
+        $scope.user = userService.getTestUser();
 
         // check if user is an object
-        if (user == null) {
+        if ($scope.user == null) {
             // if no user then go to landing page
             //document.location.href="#/";
         }
-        console.log(user);
+        console.log($scope.user);
     };
 
     $scope.setDestination = function() {
@@ -17,7 +19,7 @@ app.controller("riderCtrl", function($scope, $http, userService) {
 	}
 
     $scope.$on('$routeChangeSuccess', function () {
-        $scope.onLoad();
+        $scope.init();
     });
 
     $scope.initMap = function(map) {
@@ -54,61 +56,121 @@ app.controller("riderCtrl", function($scope, $http, userService) {
         }
     };
 
-	$scope.getETA = function(map) {
-    	var origin1 = map.getCenter();
-    	if ($scope.address) var destinationA = $scope.address;
-    	else destinationA = '200 E Santa Clara St San Jose CA';
+	$scope.getETA = function() {
+        let map = $scope.map;
+    	let origin1, destinationA;
 
-    	var service = new google.maps.DistanceMatrixService();
-    	service.getDistanceMatrix(
-        {
-      	 	 origins: [origin1],
-      		 destinations: [destinationA],
-       		 travelMode: 'DRIVING',
-       		 unitSystem: google.maps.UnitSystem.IMPERIAL,
-      	}, callback);
+        if ($scope.location)
+            origin1 = $scope.location;
+        else
+            origin1 = map.getCenter();
 
-    	var directionsDisplay;
-    	var directionsService = new google.maps.DirectionsService();
-    	var request = {
-    		origin: origin1,
-    		destination: destinationA,
-    		travelMode: 'DRIVING'
-      	};
+    	if ($scope.destination)
+            destinationA = $scope.destination;
+    	else
+            destinationA = '200 E Santa Clara St San Jose CA';
 
-     	directionsDisplay = new google.maps.DirectionsRenderer();
-        var mapOptions = {
-            zoom:7,
-            center: origin1
-        };
-     	map = new google.maps.Map(document.getElementById('map'),mapOptions);
-      	directionsDisplay.setMap(map);
-
-    	directionsService.route(request, function(result, status) {
-    		if (status == 'OK') {
-                directionsDisplay.setDirections(result);
+        let geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': origin1}, function(results, status) {
+            if (status == 'OK') {
+                origin1 = results[0].geometry.location;
+                geocoder.geocode({'address': destinationA}, function(results, status) {
+                    if (status == 'OK') {
+                        destinationA = results[0].geometry.location;
+                        geocodingCallback();
+                    } else {
+                        console.log('Geocode was not successful for the following reason: ' + status);
+                            return;
+                    }
+                });
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+                return;
             }
-      	});
-	}
+        });
+        console.log("origin1: ", origin1);
+        console.log("destinationA: ", destinationA);
+        $scope.canSubmit = true;
 
-	function callback(response, status) {
-    	if (status == 'OK') {
-    		var origins = response.originAddresses;
-    		var destinations = response.destinationAddresses;
+        function geocodingCallback() {
+        	var service = new google.maps.DistanceMatrixService();
+        	service.getDistanceMatrix({
+          	 	 origins: [origin1],
+          		 destinations: [destinationA],
+           		 travelMode: 'DRIVING',
+           		 unitSystem: google.maps.UnitSystem.IMPERIAL,
+          	}, distanceMatrixCallback);
 
-    		for (var i = 0; i < origins.length; i++) {
-      			var results = response.rows[i].elements;
-      			for (var j = 0; j < results.length; j++) {
-        			var element = results[j];
-        			$scope.distance = element.distance.text;
-        			$scope.duration = element.duration.text;
-    				var cost = element.distance.value*0.002;
-    				cost = parseFloat(Math.round(cost * 100) / 100).toFixed(2);
-    				$scope.cost = cost;
-        			var from = origins[i];
-        			var to = destinations[j];
-  				}
-			}
-  		}
-	}
+        	var directionsDisplay;
+        	var directionsService = new google.maps.DirectionsService();
+        	var request = {
+        		origin: origin1,
+        		destination: destinationA,
+        		travelMode: 'DRIVING'
+          	};
+
+         	directionsDisplay = new google.maps.DirectionsRenderer();
+            var mapOptions = {
+                zoom: 7,
+                center: origin1
+            };
+         	map = new google.maps.Map($('#map').get(0), mapOptions);
+          	directionsDisplay.setMap(map);
+
+        	directionsService.route(request, function(result, status) {
+        		if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                }
+          	});
+        }
+
+        function distanceMatrixCallback(response, status) {
+        	if (status == 'OK') {
+        		var origins = response.originAddresses;
+        		var destinations = response.destinationAddresses;
+
+        		for (var i = 0; i < origins.length; i++) {
+          			var results = response.rows[i].elements;
+          			for (var j = 0; j < results.length; j++) {
+            			var element = results[j];
+            			$scope.distance = element.distance.text;
+            			$scope.duration = element.duration.text;
+        				var cost = element.distance.value * 0.002;
+        				cost = parseFloat(Math.round(cost * 100) / 100).toFixed(2);
+        				$scope.cost = cost;
+            			var from = origins[i];
+            			var to = destinations[j];
+      				}
+    			}
+      		}
+    	}
+	};
+
+    $scope.requestRide = function() {
+        let geocoder = new google.maps.Geocoder();
+        var location = $scope.location;
+
+        if (!$scope.canSubmit) { alert("Invalid location"); return; }
+
+        console.log("Before geocoding");
+
+        console.log(location);
+        geocoder.geocode({'address': location}, function(results, status) {
+            if (status == 'OK') {
+                location = results[0].geometry.location;
+                console.log(location);
+                $.post(window.root + "app/server/request.php",
+                    {lat: location.lat, lng: location.lng},
+                    function(data) {
+                        console.log(data);
+                    }
+                );
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+                return;
+            }
+        });
+
+        console.log("After geocoding");
+    };
 });

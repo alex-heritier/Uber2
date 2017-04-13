@@ -33,6 +33,6 @@ app.config(function($routeProvider) {
         templateUrl : window.root + "app/pages/driver.html"
     })
     .otherwise({
-        redirectTo: window.root + "app/"
+        redirectTo: "/"
     });
 });

@@ -11,8 +11,17 @@ app.factory("userService", function() {
         return user;
     }
 
+    function getTestUser() {
+        return {
+            name:       'Larry Page',
+            email:      'ceo@google.com',
+            password:   'iamrich'
+        };
+    }
+
     return {
         setUser: setUser,
-        getUser: getUser
+        getUser: getUser,
+        getTestUser: getTestUser
     }
 });

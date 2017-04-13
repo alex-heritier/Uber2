@@ -2,16 +2,25 @@
 <link href="app/css/rider.css"  rel="stylesheet" type="text/css"  />
 
 <div class="jumbotron title-box">
-    <h1>Rider Page</h1>
+    <h1>Rider Profile</h1>
+    <p>{{ user.name }}, {{ user.email }}</p>
 </div>
 
 <div class="jumbotron content-box">
     <form>
         <div class="form-group">
-            <label for="destination">Enter your destination: </label>
-    		<input type="text" class="form-control" placeholder="1 Washington Square San Jose CA" ng-model="address">
-	        <button type="submit" class="btn btn-default" ng-click="getETA(map)">Get ETA</button>
+            <label for="destination">Enter your location: </label>
+    		<input type="text" class="form-control"
+                placeholder="1 Washington Square San Jose CA"
+                ng-model="location" ng-blur="getETA()">
         </div>
+        <div class="form-group">
+            <label for="destination">Enter your destination: </label>
+    		<input type="text" class="form-control"
+                placeholder="1600 Pennsylvania Ave NW, Washington"
+                ng-model="destination" ng-blur="getETA()">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="requestRide()">Get a ride!</button>
     </form>
 
     <ul>
@@ -29,14 +38,13 @@
     'use strict';
 
     function initMap() {
-        let map = new google.maps.Map(document.getElementById('map'), {
+        let map = new google.maps.Map($('#map').get(0), {
             center: {lat: 37.335, lng: -121.881},
-            zoom: 8
+            zoom: 10
         });
 
         // enter riderCtrl
-        angular.element($('#uber2-view')).scope().initMap(map);
+        angular.element($('#uber2-view').get(0)).scope().initMap(map);
     }
-
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ6yfacZkklf1syeK9AngqJDwo9DB00_4&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg5vYIK-jzpARJEDjbGdG91xn0r0eGvVM&callback=initMap" async defer></script>

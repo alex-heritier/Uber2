@@ -18,6 +18,10 @@ app.controller("driverCtrl", function($scope, $http, userService) {
         $scope.initMap();
     };
 
+    $scope.$on('$routeChangeSuccess', function () {
+        $scope.onLoad();
+    });
+
     $scope.initMap = function() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
