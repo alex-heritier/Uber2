@@ -32,6 +32,10 @@ app.config(function($routeProvider) {
         controller: 'driverCtrl',
         templateUrl : window.root + "app/pages/driver.html"
     })
+    .when("/about", {
+        controller: 'aboutCtrl',
+        templateUrl : window.root + "app/pages/about.html"
+    })
     .otherwise({
         redirectTo: window.root + "app/"
     });
