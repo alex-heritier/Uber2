@@ -21,7 +21,8 @@ if ($conn->connect_error) {
 
 // check for duplicates
 $sql = "SELECT * FROM users WHERE email='$user_email'";
-if ($result = $conn->query($sql)) {
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
     echo "false";
     return;
 }
