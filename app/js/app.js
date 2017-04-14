@@ -8,7 +8,8 @@ switch (document.location.hostname)
         window.root = '/uber2/'; break;
     case 'localhost' :
         window.root = '/'; break;
-    default :  // set whatever you want
+    default :
+        window.root = '/'; break;
 }
 
 var app = angular.module("uber2", ["ngRoute"]);
