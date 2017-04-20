@@ -7,7 +7,7 @@ app.controller("registerCtrl", function($scope, $location, userService) {
         // check if user is an object
         if (user != null) {
             $location.path("/rider");
-            $scope.apply();
+            $scope.$apply();
         }
         console.log(user);
     };

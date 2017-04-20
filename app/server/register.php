@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
 }
 
 // insert new user
-$sql = "INSERT INTO users (email, pass, `driver?`) "
+$sql = "INSERT INTO users (email, pass, is_driver) "
     . "VALUE ('$user_email', '$user_pass', '$user_driver_status')";
 if ($result = $conn->query($sql)) {
     echo "true";

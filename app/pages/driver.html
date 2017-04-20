@@ -5,10 +5,12 @@
     <h1>Driver Page</h1>
 </div>
 
-<div id="floating-panel">
-    <button id ="click">Direction to client</button>
+<div class="panel request-box">
+    <div class="well" ng-repeat="req in requests">
+        <span>req_id: {{ req[0] }}</span><br>
+        <span>user_id: {{ req[1] }}</span><br>
+        <span>lat: {{ req[2] }}</span><br>
+        <span>lng: {{ req[3] }}</span><br>
+        <span>time: {{ req[4] }}</span><br><hr>
+    </div>
 </div>
-
-<div id="right-panel"></div>
-
-<div id="map"></div>

@@ -1,10 +1,11 @@
 'use strict';
 
-app.controller("riderCtrl", function($scope, userService) {
+app.controller("riderCtrl", function($scope, $location, userService) {
     $scope.init = function() {
+        $scope.map = undefined;
         $scope.canSubmit = false;
 
-        $scope.user = userService.getTestUser();
+        $scope.user = userService.getUser();
 
         // check if user is an object
         if ($scope.user == null) {
@@ -24,7 +25,6 @@ app.controller("riderCtrl", function($scope, userService) {
 
     $scope.initMap = function(map) {
         $scope.map = map;
-        console.log($scope.map);
 
         var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -152,15 +152,13 @@ app.controller("riderCtrl", function($scope, userService) {
 
         if (!$scope.canSubmit) { alert("Invalid location"); return; }
 
-        console.log("Before geocoding");
-
         console.log(location);
         geocoder.geocode({'address': location}, function(results, status) {
             if (status == 'OK') {
                 location = results[0].geometry.location;
                 console.log(location);
                 $.post(window.root + "app/server/request.php",
-                    {lat: location.lat, lng: location.lng},
+                    {email: $scope.user.email, lat: location.lat, lng: location.lng},
                     function(data) {
                         console.log(data);
                     }
@@ -170,7 +168,10 @@ app.controller("riderCtrl", function($scope, userService) {
                 return;
             }
         });
+    };
 
-        console.log("After geocoding");
+    $scope.logout = function() {
+        userService.setUser(null);
+        $location.path("/");
     };
 });
