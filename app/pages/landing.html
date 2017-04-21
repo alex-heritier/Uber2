@@ -1,5 +1,31 @@
 <!-- landing CSS -->
 <link href="app/css/landing.css"  rel="stylesheet" type="text/css"  />
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#/landing" class="navbar-brand">Uber 2</a>
+        </div>
+        <nav class="{{active}}">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#/landing" class="landing" ng-click="active='landing'">Home</a>
+                </li>
+                <li>
+                    <a href="#/register" class="register" ng-click="active='register'">Register</a>
+                </li>
+                <li>
+                    <a href="#/driver" class="driver" ng-click="active='driver'">Driver</a>
+                </li>
+                <li>
+                    <a href="#/rider" class="rider" ng-click="active='rider'">Rider</a>
+                </li>
+                <li>
+                    <a href="#/about" class="about" ng-click="active='about'">About</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
 <div class="jumbotron content-box">
     <h1>Uber2</h1>

@@ -1,6 +1,33 @@
 <!-- about CSS -->
 <link href="app/css/register.css"  rel="stylesheet" type="text/css"  />
 
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#/landing" class="navbar-brand">Uber 2</a>
+        </div>
+        <nav class="{{active}}">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#/landing" class="landing" ng-click="active='landing'">Home</a>
+                </li>
+                <li>
+                    <a href="#/register" class="register" ng-click="active='register'">Register</a>
+                </li>
+                <li>
+                    <a href="#/driver" class="driver" ng-click="active='driver'">Driver</a>
+                </li>
+                <li>
+                    <a href="#/rider" class="rider" ng-click="active='rider'">Rider</a>
+                </li>
+                <li>
+                    <a href="#/about" class="about" ng-click="active='about'">About</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
 <div class="jumbotron title-box">
     <h1>Register</h1>
     <p>Uber2 is amazing and if you don't agree with that then you're not amazing.</p>
