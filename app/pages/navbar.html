@@ -1,7 +1,4 @@
-<!-- driver CSS -->
-<link href="app/css/driver.css"  rel="stylesheet" type="text/css"  />
-
-<div class="navbar navbar-default">
+<div class="navbar navbar-default"
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="#/landing" class="navbar-brand">Uber 2</a>
@@ -27,24 +24,3 @@
         </nav>
     </div>
 </div>
-
-<div class="jumbotron title-box">
-    <h1>Driver Page</h1>
-</div>
-
-<div class="panel request-box">
-    <div class="well" ng-repeat="req in requests">
-        <span>req_id: {{ req[0] }}</span><br>
-        <span>user_id: {{ req[1] }}</span><br>
-        <span>lat: {{ req[2] }}</span><br>
-        <span>lng: {{ req[3] }}</span><br>
-        <span>time: {{ req[4] }}</span><br>
-    </div>
-</div>
-
-<div id="right-panel"></div>
-
-<div id="map">
-
-</div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg5vYIK-jzpARJEDjbGdG91xn0r0eGvVM&callback=initMap" async defer></script>
