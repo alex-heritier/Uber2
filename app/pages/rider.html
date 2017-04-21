@@ -32,7 +32,8 @@
 
 <div class="jumbotron title-box">
     <h1>Rider Profile</h1>
-    <p>{{ user.name }}, {{ user.email }}</p>
+    <p>{{ user.email }}</p>
+    <button type="submit" class="btn btn-default" ng-click="logout()">Logout</button>
 </div>
 
 <div class="jumbotron content-box">
@@ -53,9 +54,9 @@
     </form>
 
     <ul>
-        <li>Distance: <span ng-bind="distance"></span></li>
-        <li>Time: <span ng-bind="duration"></span></li>
-	    <li>Cost: $<span ng-bind="cost"></span></li>
+        <li>Distance: <span>{{ distance }}</span></li>
+        <li>Time: <span>{{ duration }}</span></li>
+	    <li>Cost: $<span>{{ cost }}</span></li>
     </ul>
 
     <div id="map"></div>

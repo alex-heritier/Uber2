@@ -4,12 +4,12 @@ app.controller("landingCtrl", function($scope, $location, userService) {
     $scope.onLoad = function() {
         var user = userService.getUser();
 
+        console.log(user);
         // check if user is an object
-        if (user != null) {
+        if (!user.testData) {
             $location.path("/rider");
             $scope.apply();
         }
-        console.log(user);
     };
 
     $scope.$on('$routeChangeSuccess', function () {

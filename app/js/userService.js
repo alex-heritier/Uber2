@@ -8,20 +8,20 @@ app.factory("userService", function() {
     }
 
     function getUser() {
-        return user;
-    }
-
-    function getTestUser() {
-        return {
-            name:       'Larry Page',
-            email:      'ceo@google.com',
-            password:   'iamrich'
-        };
+        if (user == null) { // if no user
+            return {    // return test user
+                name:       'Larry Page',
+                email:      'ceo@google.com',
+                password:   'iamrich',
+                testData:   true
+            };
+        } else {
+            return user;
+        }
     }
 
     return {
         setUser: setUser,
         getUser: getUser,
-        getTestUser: getTestUser
     }
 });

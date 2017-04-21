@@ -11,17 +11,27 @@ app.controller("driverCtrl", function($scope, $http, userService) {
         console.log(user);
 
         // check if google maps is loaded (should be)
-        if (google == undefined) {
+        /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
-        }
+        }*/
 
-        $scope.initMap();
+        $scope.setRequests();
     };
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.onLoad();
     });
 
+    $scope.setRequests = function() {
+        $.get(window.root + "app/server/get_requests.php",
+            function(data) {
+                $scope.requests = JSON.parse(data);
+                $scope.$apply();
+                console.log($scope.requests);
+            })
+    };
+
+    /*
     $scope.initMap = function() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -80,4 +90,5 @@ app.controller("driverCtrl", function($scope, $http, userService) {
             }
         });
     }
+    */
 });
