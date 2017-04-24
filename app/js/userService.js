@@ -8,16 +8,7 @@ app.factory("userService", function() {
     }
 
     function getUser() {
-        if (user == null) { // if no user
-            return {    // return test user
-                name:       'Larry Page',
-                email:      'ceo@google.com',
-                password:   'iamrich',
-                testData:   true
-            };
-        } else {
-            return user;
-        }
+        return user;
     }
 
     return {
