@@ -13,7 +13,7 @@ body {
 }
 
 .content-box {
-    height: 920px;
+    overflow: auto;
 }
 
 .box {

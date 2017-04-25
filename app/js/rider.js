@@ -15,6 +15,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         }
         console.log($scope.user);
         
+        $scope.updateRideStatus();
         setInterval($scope.updateRideStatus, 1000 * 10);    // update ride status every 10s
     };
 
@@ -223,7 +224,6 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                   try {
                       var rideData = JSON.parse(data)[0]; 
                       $scope.rideStatus = rideData["status"];
-                      console.log("INSIDE TRY BLOCK: ", $scope.rideStatus);
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
                       $scope.rideStatus = "none";
