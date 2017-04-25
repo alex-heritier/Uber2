@@ -220,7 +220,11 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         $.get(window.root + "app/server/get_requests.php?user_id=" + $scope.user.user_id,
               function(data) {
                   console.log(data);
-                  $scope.rideStatus = JSON.parse(data);
+                  try {
+                    $scope.rideStatus = JSON.parse(data)[0];
+                  } catch (e) {
+                    $scope.rideStatus = "none";
+                  }
                   $scope.$apply();
                   console.log($scope.rideStatus);
               }
