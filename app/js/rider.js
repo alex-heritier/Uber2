@@ -14,6 +14,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
            document.location.href="#/";
         }
         console.log($scope.user);
+        
+        $scope.getRideStatus();
     };
 
     $scope.setDestination = function() {
@@ -212,5 +214,9 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     $scope.logout = function() {
         userService.setUser(null);
         $location.path("/");
+    };
+    
+    $scope.getRideStatus = function() {
+        
     };
 });
