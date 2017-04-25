@@ -2,6 +2,7 @@
 
 $user_id = $_POST['user'];
 $request_id = $_POST['request'];
+$driver_id = $_POST['driver'];
 
 $server = "uber2.db";
 $username = "aheritier";
@@ -17,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 // Update driver to busy
-$sql = "UPDATE requests SET status='pending' WHERE user_id=$user_id AND req_id=$request_id";
+$sql = "UPDATE requests SET status='pending', driver=0 WHERE user_id=$user_id AND req_id=$request_id AND driver=$driver_id";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record update success";
