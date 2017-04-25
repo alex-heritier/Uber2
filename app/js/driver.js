@@ -39,7 +39,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         console.log('Request accepted for request #: ' + reqNum[0]);
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/acceptRide.php",
-            {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
+            {request: reqNum["req_id"], user: reqNum["user_id"], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
@@ -48,10 +48,10 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
-        console.log('Request cancelled for request #: ' + reqNum[0]);
+        console.log('Request cancelled for request #: ' + reqNum["req_id"]);
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/cancelRide.php",
-            {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
+            {request: reqNum["req_id"], user: reqNum["user_id"], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
@@ -60,7 +60,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
     };
 
     $scope.checkRequest = function(reqNum) {
-        if($scope.user.user_id == reqNum[2] && 'in_progress' == reqNum[6]){
+        if($scope.user.user_id == reqNum["driver"] && 'in_progress' == reqNum["status"]){
             return true;
         } else {
             return false;
@@ -72,7 +72,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             var req = $scope.requests[i];
             console.log(req);
             console.log($scope.user.user_id)
-            if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
+            if($scope.user.user_id == req["driver"] && 'in_progress' == req["status"]){
                 $scope.available = false;
             }
         }

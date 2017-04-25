@@ -43,13 +43,13 @@
 
 <div class="panel request-box">
     <div class="well" ng-repeat="req in requests">
-        <span>req_id: {{ req[0] }}</span><br>
-        <span>user_id: {{ req[1] }}</span><br>
-        <span>driver: {{ req[2] }}</span><br>
-        <span>lat: {{ req[3] }}</span><br>
-        <span>lng: {{ req[4] }}</span><br>
-        <span>time: {{ req[5] }}</span><br>
-        <span>status: {{ req[6] }}</span><br>
+        <span>req_id: {{ req["req_id"] }}</span><br>
+        <span>user_id: {{ req["user_id"] }}</span><br>
+        <span>driver: {{ req["driver"] }}</span><br>
+        <span>lat: {{ req["lat"] }}</span><br>
+        <span>lng: {{ req["lng"] }}</span><br>
+        <span>time: {{ req["time"] }}</span><br>
+        <span>status: {{ req["status"] }}</span><br>
         <button ng-show="available" ng-click="acceptRide(req, user)">Accept Request</button>
         <button ng-show="!available && checkRequest(req)" ng-click="cancelRide(req, user)">Cancel Request</button>
     </div>
