@@ -4,6 +4,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     $scope.init = function() {
         $scope.map = undefined;
         $scope.canSubmit = false;
+        $scope.active = "rider";
 
         $scope.user = userService.getUser();
 

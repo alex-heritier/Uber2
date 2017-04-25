@@ -1,10 +1,10 @@
 'use strict';
 
 app.controller("driverCtrl", function($scope, $location, $http, userService) {
-
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
-
+        $scope.active = "driver";
+        
         // check if user is an object
         if ($scope.user == null) {
             document.location.href = "#/"; // go to landing
