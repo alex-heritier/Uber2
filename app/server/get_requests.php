@@ -19,8 +19,7 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM requests req, users rider WHERE req.user_id = rider.user_id";
 if ($user_id != NULL)
     $sql .= " AND req.user_id = '$user_id'";
-    
-echo $sql;
+
 $result = $conn->query($sql);
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $arr[] = $row;
