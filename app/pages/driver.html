@@ -50,8 +50,8 @@
         <span>time: {{ req[4] }}</span><br>
         <span>status: {{ req[5] }}</span><br>
         <span>driver: {{ req[6] }}</span><br>
-        <button ng-if="currentRequest == ''" ng-click="acceptRide(req, user)">Accept Request</button>
-        <button ng-if="currentRequest == req[0]" ng-click="cancelRide(req, user)">Cancel Request</button>
+        <button ng-if="req[5] == 'pending' && currentRequest == 0" ng-click="acceptRide(req, user)">Accept Request</button>
+        <button ng-if="req[5] == ''" ng-click="cancelRide(req, user)">Cancel Request</button>
     </div>
 </div>
 

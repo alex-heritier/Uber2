@@ -14,7 +14,6 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
         }*/
-        $scope.checkRides();
         $scope.setRequests();
     };
 
@@ -27,6 +26,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
             function(data) {
                 $scope.requests = JSON.parse(data);
                 $scope.$apply();
+                $scope.checkBusy();
                 console.log($scope.requests);
             });
     };
@@ -41,6 +41,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
                 console.log(data);
             }
         );
+        $scope.apply();
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
@@ -53,17 +54,18 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
                 console.log(data);
             }
         );
+        $scope.apply();
     };
 
-    $scope.checkRides = function(reqNum) {
-        if (reqNum[5] == 'in_progress' && $scope.user.user_id == reqNum[6]) {
-            $scope.currentRequest = reqNum[0];
-        } else if (reqNum[5] == 'in_progress') {
-            $scope.currentRequest = -1;
-        } else {
-            $scope.currentRequest = '';
+    $scope.checkBusy = function() {
+        for(var i=0; i<$scope.requests.length; i++){
+            var req = $scope.requests[i];
+            console.log(req);
+            if(user.user_id == req[6] && 'in_progress' == req[5]){
+                $scope.currentRequest = req[0];
+            }
         }
-    };
+    }
     
     $scope.logout = function() {
         userService.setUser(null);
