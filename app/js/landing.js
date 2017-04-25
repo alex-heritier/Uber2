@@ -1,6 +1,9 @@
 'use strict';
 
 app.controller("landingCtrl", function($scope, $location, userService) {
+    $scope.email = null;
+    $scope.password = null;
+
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
 
@@ -21,8 +24,8 @@ app.controller("landingCtrl", function($scope, $location, userService) {
 
     $scope.login = function() {
         var user = {
-            email: $scope.user.email,
-            password: $scope.user.password
+            email: $scope.email,
+            password: $scope.password
         };
 
         // check if user exists
