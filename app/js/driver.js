@@ -6,10 +6,10 @@ app.controller("driverCtrl", function($scope, $http, userService) {
         $scope.user = userService.getUser();
 
         // check if user is an object
-        if (user == null) {
+        if ($scope.user == null) {
             //document.location.href = "#/"; // go to landing
         }
-        console.log(user);
+        console.log($scope.user);
 
         // check if google maps is loaded (should be)
         /*if (window.google == undefined) {
