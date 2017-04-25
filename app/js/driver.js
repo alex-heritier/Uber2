@@ -36,7 +36,12 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     $scope.acceptRide = function(reqNum) {
         console.log('Request accepted for request #: ' + reqNum);
         $scope.currentRequest = reqNum;
-    }
+    };
+
+    $scope.cancelRide = function(reqNum) {
+        console.log('Request cancelled for request #: ' + reqNum);
+        $scope.currentRequest = "";
+    };
 
     /*
     $scope.initMap = function() {
