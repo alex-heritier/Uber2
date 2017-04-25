@@ -3,6 +3,7 @@
 app.controller("registerCtrl", function($scope, $location, userService) {
     $scope.onLoad = function() {
         var user = userService.getUser();
+        $scope.active = "register";
 
         // check if user is an object
         if (user != null) {

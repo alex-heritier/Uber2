@@ -6,6 +6,7 @@ app.controller("landingCtrl", function($scope, $location, userService) {
 
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
+        $scope.active = "landing";
 
         console.log($scope.user);
         // check if user is an object
