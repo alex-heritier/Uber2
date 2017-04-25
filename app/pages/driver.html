@@ -35,7 +35,7 @@
 </div>
 
 <div class="jumbotron title-box">
-    <h1>Driver Page</h1>
+    <h1>Driver Profile</h1>
     <p>{{ user.email }}</p>
     <button type="submit" class="btn btn-default" onclick="document.location.href='#/rider'">Switch to rider</button>
     <button type="submit" class="btn btn-default" ng-click="logout()">Logout</button>
@@ -47,7 +47,9 @@
         <span>Latitude: {{ req["lat"] }}</span><br>
         <span>Longitude: {{ req["lng"] }}</span><br>
         <span>{{ req["time"] }}</span><br>
-        <button ng-show="available" ng-click="acceptRide(req, user)">Accept Request</button>
+        <span>{{ req["status"] }}</span><br>
+        <span>{{ req["driver"] }}</span><br>
+        <button ng-show="available && !checkRequest(req)" ng-click="acceptRide(req, user)">Accept Request</button>
         <button ng-show="!available && checkRequest(req)" ng-click="cancelRide(req, user)">Cancel Request</button>
     </div>
 </div>
