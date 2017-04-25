@@ -2,12 +2,9 @@ body {
     background-image: url(../img/landing-bg.jpg);
 }
 
-.content-box {
+.title-box {
     margin-top: 20px;
     background-color: white;
-}
-
-.content-box h1 {
     font-size: 6rem;
     text-align: center;
 }
@@ -16,6 +13,6 @@ body {
     background-color: white;
 }
 
-.table-header {
+.content-box h2 {
     text-decoration: underline;
 }
