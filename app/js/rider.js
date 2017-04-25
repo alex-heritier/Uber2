@@ -207,8 +207,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                     {email: $scope.user.email, lat: location.lat, lng: location.lng},
                     function(data) {
                         console.log(data);
-		}
-                );
+                    }
+        );
     };
 
     $scope.logout = function() {
@@ -217,6 +217,12 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     };
     
     $scope.getRideStatus = function() {
-        
+        $.get(window.root + "app/server/get_requests.php?user_id=" + $scope.user.user_id,
+              function(data) {
+                  $scope.rideStatus = JSON.parse(data);
+                  $scope.$apply();
+                  console.log($scope.rideStatus);
+              }
+        );
     };
 });
