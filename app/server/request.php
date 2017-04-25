@@ -38,8 +38,8 @@ if ($result->num_rows > 0) {
 }
 
 // insert new request
-$sql = "INSERT INTO requests (user_id, lat, lng) "
-    . "VALUE ('$user_id', '$lat', '$lng')";
+$sql = "INSERT INTO requests (user_id, lat, lng, status) "
+    . "VALUE ('$user_id', '$lat', '$lng', 'pending')";
 if ($result = $conn->query($sql)) {
     echo "true";
 } else {

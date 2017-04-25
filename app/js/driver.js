@@ -31,6 +31,10 @@ app.controller("driverCtrl", function($scope, $http, userService) {
             })
     };
 
+    $scope.acceptRide = function() {
+        console.log("button clicked");
+    }
+
     /*
     $scope.initMap = function() {
         var directionsService = new google.maps.DirectionsService;
