@@ -216,7 +216,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         $location.path("/");
     };
     
-    $scope.getRideStatus = function() {
+    $scope.updateRideStatus = function() {
         $.get(window.root + "app/server/get_requests.php?user_id=" + $scope.user.user_id,
               function(data) {
                   console.log(data);
