@@ -26,14 +26,12 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
             function(data) {
                 $scope.requests = JSON.parse(data);
                 $scope.$apply();
-                $scope.checkBusy();
                 console.log($scope.requests);
             });
     };
 
     $scope.acceptRide = function(reqNum, userNum) {
         console.log('Request accepted for request #: ' + reqNum[0]);
-        $scope.currentRequest = reqNum[0];
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/acceptRide.php",
             {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
@@ -41,12 +39,11 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
                 console.log(data);
             }
         );
-        $scope.apply();
+        $scope.setRequests();
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
         console.log('Request cancelled for request #: ' + reqNum[0]);
-        $scope.currentRequest = '';
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/cancelRide.php",
             {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
@@ -54,18 +51,21 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
                 console.log(data);
             }
         );
-        $scope.apply();
+        $scope.setRequests();
     };
 
     $scope.checkBusy = function() {
         for(var i=0; i<$scope.requests.length; i++){
             var req = $scope.requests[i];
             console.log(req);
+            console.log($scope.user.user_id)
             if($scope.user.user_id == req[6] && 'in_progress' == req[5]){
-                $scope.currentRequest = req[0];
+                return false;
+            } else {
+                return true;
             }
         }
-    }
+    };
     
     $scope.logout = function() {
         userService.setUser(null);
