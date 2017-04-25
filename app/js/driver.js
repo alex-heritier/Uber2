@@ -51,7 +51,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
         if (reqNum[5] == 'in_progress') {
             $scope.currentRequest = reqNum[5];
         }
-    }
+    };
 
     /*
     $scope.initMap = function() {
