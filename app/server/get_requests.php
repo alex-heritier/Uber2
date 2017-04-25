@@ -20,6 +20,7 @@ $sql = "SELECT * FROM requests";
 if ($user_id != NULL)
     $sql .= "WHERE user_id='$user_id'";
     
+echo $user_id . ": " . $sql;
 $result = $conn->query($sql);
 while($row = $result->fetch_array(MYSQLI_NUM)) {
     $arr[] = $row;
