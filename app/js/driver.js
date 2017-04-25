@@ -25,10 +25,10 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
-                $scope.checkBusy();
                 $scope.$apply();
                 console.log($scope.requests);
             });
+        $scope.checkBusy();
     };
 
     $scope.acceptRide = function(reqNum, userNum) {
