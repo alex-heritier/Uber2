@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 // get requests
 $sql = "SELECT * FROM requests";
 if ($user_id != NULL)
-    $sql .= "WHERE user_id='$user_id'";
+    $sql .= " WHERE user_id='$user_id'";
     
 echo $user_id . ": " . $sql;
 $result = $conn->query($sql);
