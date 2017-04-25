@@ -45,11 +45,11 @@
     <div class="well" ng-repeat="req in requests">
         <span>req_id: {{ req[0] }}</span><br>
         <span>user_id: {{ req[1] }}</span><br>
-        <span>lat: {{ req[2] }}</span><br>
-        <span>lng: {{ req[3] }}</span><br>
-        <span>time: {{ req[4] }}</span><br>
-        <span>status: {{ req[5] }}</span><br>
-        <span>driver: {{ req[6] }}</span><br>
+        <span>driver: {{ req[2] }}</span><br>
+        <span>lat: {{ req[3] }}</span><br>
+        <span>lng: {{ req[4] }}</span><br>
+        <span>time: {{ req[5] }}</span><br>
+        <span>status: {{ req[6] }}</span><br>
         <button ng-show="checkBusy()" ng-click="acceptRide(req, user)">Accept Request</button>
         <button ng-show="!checkBusy()" ng-click="cancelRide(req, user)">Cancel Request</button>
     </div>

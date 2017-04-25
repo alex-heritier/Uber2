@@ -60,7 +60,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
             var req = $scope.requests[i];
             console.log(req);
             console.log($scope.user.user_id)
-            if($scope.user.user_id == req[6] && 'in_progress' == req[5]){
+            if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
                 check = false;
             }
         }
