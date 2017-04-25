@@ -21,8 +21,8 @@ app.controller("landingCtrl", function($scope, $location, userService) {
 
     $scope.login = function() {
         var user = {
-            email: $scope.user.email,
-            password: $scope.user.password
+            email: $scope.email,
+            password: $scope.password
         };
 
         // check if user exists
