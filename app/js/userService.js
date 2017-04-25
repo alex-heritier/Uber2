@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory("userService", function() {
-    var user = null;
+    var user = ;
 
     function setUser(u) {
         user = u;

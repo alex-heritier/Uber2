@@ -10,14 +10,14 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         // check if user is an object
         if ($scope.user == null) {
             // if no user then go to landing page
-            //document.location.href="#/";
+            document.location.href="#/";
         }
         console.log($scope.user);
     };
 
     $scope.setDestination = function() {
 	    var address = $scope.address;
-	}
+	};
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.init();
