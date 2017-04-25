@@ -221,10 +221,12 @@ app.controller("riderCtrl", function($scope, $location, userService) {
               function(data) {
                   console.log(data);
                   try {
-                    var rideData = JSON.parse(data)[0];
-                    $scope.rideStatus = rideData["status"];
+                      var rideData = JSON.parse(data)[0]; 
+                      $scope.rideStatus = rideData["status"];
+                      console.log("INSIDE TRY BLOCK: ", $scope.rideStatus);
                   } catch (e) {
-                    $scope.rideStatus = "none";
+                      console.log("EXCEPTION: ", e);
+                      $scope.rideStatus = "none";
                   }
                   console.log("RIDE REQUEST STATUS: ", $scope.rideStatus);
                   $scope.$apply();
