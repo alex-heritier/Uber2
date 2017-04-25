@@ -42,7 +42,8 @@
     <button type="submit" class="btn btn-default" ng-click="logout()">Logout</button>
 </div>
 
-<div class="jumbotron content-box">
+<!-- no current ride request -->
+<div ng-if="rideStatus == 'none'" class="jumbotron content-box">
     <form>
         <div class="form-group">
             <label for="destination">Enter your location: </label>
@@ -67,6 +68,16 @@
 
     <div id="map"></div>
     </div>
+</div>
+
+<!-- pending ride request -->
+<div ng-if="rideStatus == 'pending'" class="jumbotron content-box">
+    <p>Please wait while we find you a driver.</p>
+</div>
+
+<!-- in progress ride request -->
+<div ng-if="rideStatus == 'in_progress'" class="jumbotron content-box">
+    
 </div>
 
 <!-- GOOGLE MAPS -->

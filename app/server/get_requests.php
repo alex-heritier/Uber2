@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // get requests
-$sql = "SELECT * FROM requests r, users u WHERE r.user_id = u.user_id";
+$sql = "SELECT * FROM requests req, users rider, users driver WHERE req.user_id = rider.user_id AND req.driver = driver.user_id";
 if ($user_id != NULL)
     $sql .= " AND r.user_id = '$user_id'";
     

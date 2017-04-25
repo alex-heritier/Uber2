@@ -15,7 +15,7 @@ body {
 }
 
 .request-box {
-    height: 400px;
+    overflow: auto;
 }
 
 .request-box .well {
