@@ -22,7 +22,7 @@ $sql = "SELECT * FROM users WHERE email='$user_email' AND pass='$user_pass'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "true";
+    echo json_encode($result->fetch_array(MYSQLI_NUM));
 } else {
     echo "false";
 }

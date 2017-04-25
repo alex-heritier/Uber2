@@ -4,6 +4,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     $scope.init = function() {
         $scope.map = undefined;
         $scope.canSubmit = false;
+        $scope.userIsDriver = false;
 
         $scope.user = userService.getUser();
 
@@ -13,6 +14,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
             //document.location.href="#/";
         }
         console.log($scope.user);
+        
+        $scope.getDriverStatus();
     };
 
     $scope.setDestination = function() {
@@ -174,5 +177,15 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     $scope.logout = function() {
         userService.setUser(null);
         $location.path("/");
+    };
+    
+    $scope.getDriverStatus = function() {
+        $.get(window.root + "app/server/get_user.php?email=" + $scope.user.email,
+              function(data) {
+                  console.log(data);
+                  $scope.userIsDriver = true;
+                  $scope.$apply();
+              }
+          );
     };
 });
