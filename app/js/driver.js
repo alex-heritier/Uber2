@@ -54,17 +54,12 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         $scope.setRequests();
     };
 
-    $scope.checkBusy = function() {
-        var check = true;
-        for(var i=0; i<$scope.requests.length; i++){
-            var req = $scope.requests[i];
-            console.log(req);
-            console.log($scope.user.user_id)
-            if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
-                check = false;
-            }
+    $scope.checkBusy = function(reqNum) {
+        if($scope.user.user_id == reqNum[2] && 'in_progress' == reqNum[6]){
+            return false;
+        } else {
+            return true;
         }
-        return check;
     };
     
     $scope.logout = function() {
