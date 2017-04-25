@@ -14,7 +14,6 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
         }*/
-        $scope.checkRides();
         $scope.setRequests();
     };
 
