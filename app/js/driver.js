@@ -34,10 +34,10 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     };
 
     $scope.acceptRide = function(reqNum) {
-        console.log('Request accepted for request #: ' + reqNum[5]);
-        $scope.currentRequest = reqNum[5];
+        console.log('Request accepted for request #: ' + reqNum[0]);
+        $scope.currentRequest = reqNum[0];
         $.post(window.root + "app/server/acceptRide.php",
-            {request: reqNum[5], user: reqNum[0]},
+            {request: reqNum[0], user: reqNum[1]},
             function(data) {
                 console.log(data);
             }
