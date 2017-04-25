@@ -58,7 +58,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
     };
 
     $scope.checkBusy = function() {
-        for(i=0; i<$scope.requests.length; i++){
+        for(var i=0; i<$scope.requests.length; i++){
             req = requests[i];
             if(user.user_id == req[6] && 'in_progress' == req[5]){
                 $scope.currentRequest = req[0];
