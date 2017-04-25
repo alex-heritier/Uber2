@@ -47,6 +47,5 @@ if ($result = $conn->query($sql)) {
     echo "false";
 }
 
-mysql_close($conn);
 
 ?>

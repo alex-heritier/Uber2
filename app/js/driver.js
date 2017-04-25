@@ -1,21 +1,20 @@
 'use strict';
 
-app.controller("driverCtrl", function($scope, $http, userService) {
+app.controller("driverCtrl", function($scope, $location, $http, userService) {
 
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
 
         // check if user is an object
         if ($scope.user == null) {
-            //document.location.href = "#/"; // go to landing
+            document.location.href = "#/"; // go to landing
         }
         console.log($scope.user);
-
         // check if google maps is loaded (should be)
         /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
         }*/
-        $scope.currentRequest = "";
+        $scope.checkRides();
         $scope.setRequests();
     };
 
@@ -29,7 +28,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
                 $scope.requests = JSON.parse(data);
                 $scope.$apply();
                 console.log($scope.requests);
-            })
+            });
     };
 
     $scope.acceptRide = function(reqNum, userNum) {
