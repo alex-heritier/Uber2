@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("driverCtrl", function($scope, $location, $http, userService) {
+app.controller("driverCtrl", function($scope, $rootScope, $location, $http, userService) {
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
         $scope.active = "driver";
@@ -25,10 +25,11 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
-                $scope.$apply();
+                $scope.checkBusy();
+                $rootScope.apply();
                 console.log($scope.requests);
             });
-        $scope.checkBusy();
+        
     };
 
     $scope.acceptRide = function(reqNum, userNum) {
