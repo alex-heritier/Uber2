@@ -1,6 +1,9 @@
 'use strict';
 
 app.controller("landingCtrl", function($scope, $location, userService) {
+    $scope.email = null;
+    $scope.password = null;
+
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
 
