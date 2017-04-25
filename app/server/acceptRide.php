@@ -22,8 +22,8 @@ $sql = "UPDATE requests SET status='in_progress' WHERE user_id=$user_id AND req_
 if ($conn->query($sql) === TRUE) {
     echo "Record update success";
 } else {
-    echo $user_id
-    echo $request_id
+    echo $user_id;
+    echo $request_id;
     echo "Error updating record: " . $conn->error;
 }
 
