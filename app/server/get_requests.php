@@ -16,9 +16,9 @@ if ($conn->connect_error) {
 }
 
 // get requests
-$sql = "SELECT * FROM requests";
+$sql = "SELECT * FROM requests r, users u WHERE r.user_id = u.user_id";
 if ($user_id != NULL)
-    $sql .= " WHERE user_id='$user_id'";
+    $sql .= " AND r.user_id = '$user_id'";
     
 $result = $conn->query($sql);
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
