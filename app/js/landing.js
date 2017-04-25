@@ -2,13 +2,16 @@
 
 app.controller("landingCtrl", function($scope, $location, userService) {
     $scope.onLoad = function() {
-        var user = userService.getUser();
+        $scope.user = userService.getUser();
 
-        console.log(user);
+        console.log($scope.user);
         // check if user is an object
-        if (!user.testData) {
-            $location.path("/rider");
-            $scope.apply();
+        if($scope.user != null){
+            if($scope.user.driver == 1){ 
+                document.location.href="#/driver";
+            } else {
+                document.location.href="#/rider";
+            }
         }
     };
 
@@ -18,8 +21,8 @@ app.controller("landingCtrl", function($scope, $location, userService) {
 
     $scope.login = function() {
         var user = {
-            email: $scope.email,
-            password: $scope.password
+            email: $scope.user.email,
+            password: $scope.user.password
         };
 
         // check if user exists
