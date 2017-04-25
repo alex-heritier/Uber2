@@ -15,7 +15,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         }
         console.log($scope.user);
         
-        $scope.getRideStatus();
+        setInterval($scope.updateRideStatus, 1000 * 10);    // update ride status every 10s
     };
 
     $scope.setDestination = function() {
