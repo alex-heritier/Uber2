@@ -21,7 +21,7 @@ if ($user_id != NULL)
     $sql .= " WHERE user_id='$user_id'";
     
 $result = $conn->query($sql);
-while($row = $result->fetch_array(MYSQLI_NUM)) {
+while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $arr[] = $row;
 }
 echo json_encode($arr);
