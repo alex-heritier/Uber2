@@ -31,8 +31,8 @@ app.controller("driverCtrl", function($scope, $http, userService) {
             })
     };
 
-    $scope.acceptRide = function() {
-        console.log("button clicked");
+    $scope.acceptRide = function(reqNum) {
+        console.log('Request accepted for request #: ' + reqNum);
     }
 
     /*
