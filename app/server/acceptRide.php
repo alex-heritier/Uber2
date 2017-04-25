@@ -17,8 +17,14 @@ if ($conn->connect_error) {
 }
 
 // Update driver to busy
-$sql = "UPDATE requests 
-        SET status='pending' 
-        WHERE user_id=$user_id AND req_id=$request_id";
-$result = $conn->query($sql);
-echo $result;
+$sql = "UPDATE requests SET status='pending' WHERE user_id=$user_id AND req_id=$request_id";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record update success";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+mysql_close($conn);
+
+?>
