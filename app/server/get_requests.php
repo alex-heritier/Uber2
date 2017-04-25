@@ -20,6 +20,7 @@ $sql = "SELECT * FROM requests req, users rider, users driver WHERE req.user_id 
 if ($user_id != NULL)
     $sql .= " AND r.user_id = '$user_id'";
     
+echo $sql;
 $result = $conn->query($sql);
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $arr[] = $row;
