@@ -35,6 +35,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     $scope.acceptRide = function(reqNum) {
         console.log('Request accepted for request #: ' + reqNum[0]);
         $scope.currentRequest = reqNum[0];
+        console.log($scope.currentRequest);
         $.post(window.root + "app/server/acceptRide.php",
             {request: reqNum[0], user: reqNum[1]},
             function(data) {
@@ -46,6 +47,13 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     $scope.cancelRide = function(reqNum) {
         console.log('Request cancelled for request #: ' + reqNum[0]);
         $scope.currentRequest = "";
+        console.log($scope.currentRequest);
+        $.post(window.root + "app/server/cancelRide.php",
+            {request: reqNum[0], user: reqNum[1]},
+            function(data) {
+                console.log(data);
+            }
+        );
     };
 
     $scope.checkRides = function(reqNum) {
