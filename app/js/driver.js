@@ -34,6 +34,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
 
     $scope.acceptRide = function(reqNum) {
         console.log('Request accepted for request #: ' + reqNum[0]);
+        $scope.currentRequest = reqNum[0];
         $.post(window.root + "app/server/acceptRide.php",
             {request: reqNum[0], user: reqNum[1]},
             function(data) {
@@ -49,7 +50,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
 
     $scope.checkRides = function(reqNum) {
         if (reqNum[5] == 'in_progress') {
-            $scope.currentRequest = reqNum[5];
+            $scope.currentRequest = reqNum[0];
         }
     };
 
