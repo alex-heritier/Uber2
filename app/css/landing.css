@@ -20,7 +20,7 @@ body {
     text-align: center;
 }
 
-.login-box button {
+.login-box, .login-box button input {
     margin-bottom: 10px;
 }
 
