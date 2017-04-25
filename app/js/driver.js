@@ -4,7 +4,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
         $scope.active = "driver";
-        
+        $scope.available = true;
         // check if user is an object
         if ($scope.user == null) {
             document.location.href = "#/"; // go to landing
@@ -25,6 +25,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
+                $scope.checkBusy();
                 $scope.$apply();
                 console.log($scope.requests);
             });
@@ -54,11 +55,22 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
         $scope.setRequests();
     };
 
-    $scope.checkBusy = function(reqNum) {
-        if($scope.user.user_id == reqNum[2] && 'in_progress' == reqNum[6]){
-            return false;
-        } else {
+    $scope.checkRequest = function(reqNum) {
+        if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    $scope.checkBusy = function() {
+        for(var i=0; i<$scope.requests.length; i++){
+            var req = $scope.requests[i];
+            console.log(req);
+            console.log($scope.user.user_id)
+            if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
+                $scope.available = false;
+            }
         }
     };
     
