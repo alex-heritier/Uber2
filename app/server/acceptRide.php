@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 
 // Update driver to busy
 $sql = "UPDATE requests 
-        SET status='in_progress' 
-        WHERE user_id='$user_id' AND req_id='$request_id'";
+        SET status='pending' 
+        WHERE user_id=$user_id AND req_id=$request_id";
 $result = $conn->query($sql);
 echo $result;
