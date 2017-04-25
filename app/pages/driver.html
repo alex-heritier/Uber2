@@ -36,6 +36,9 @@
 
 <div class="jumbotron title-box">
     <h1>Driver Page</h1>
+    <p>{{ user.email }}</p>
+    <button type="submit" class="btn btn-default" onclick="document.location.href='#/rider'">Switch to rider</button>
+    <button type="submit" class="btn btn-default" ng-click="logout()">Logout</button>
 </div>
 
 <div class="panel request-box">
@@ -46,7 +49,7 @@
         <span>lng: {{ req[3] }}</span><br>
         <span>time: {{ req[4] }}</span><br>
         <span>status: {{ req[5] }}</span><br>
-        <span>driver: {{ req[6] }}
+        <span>driver: {{ req[6] }}</span><br>
         <button ng-if="currentRequest == ''" ng-click="acceptRide(req, user)">Accept Request</button>
         <button ng-if="currentRequest == req[0]" ng-click="cancelRide(req, user)">Cancel Request</button>
     </div>
@@ -55,6 +58,4 @@
 <div id="right-panel"></div>
 
 <div id="map">
-
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg5vYIK-jzpARJEDjbGdG91xn0r0eGvVM&callback=initMap" async defer></script>

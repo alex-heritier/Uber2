@@ -64,6 +64,11 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
             $scope.currentRequest = '';
         }
     };
+    
+    $scope.logout = function() {
+        userService.setUser(null);
+        $location.path("/");
+    };
 
     /*
     $scope.initMap = function() {
