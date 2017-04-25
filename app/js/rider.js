@@ -221,12 +221,13 @@ app.controller("riderCtrl", function($scope, $location, userService) {
               function(data) {
                   console.log(data);
                   try {
-                    $scope.rideStatus = JSON.parse(data)[0];
+                    var rideData = JSON.parse(data)[0];
+                    $scope.rideStatus = rideData["status"];
                   } catch (e) {
                     $scope.rideStatus = "none";
                   }
+                  console.log("RIDE REQUEST STATUS: ", $scope.rideStatus);
                   $scope.$apply();
-                  console.log($scope.rideStatus);
               }
         );
     };
