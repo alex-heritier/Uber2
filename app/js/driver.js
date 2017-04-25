@@ -1,6 +1,8 @@
 'use strict';
 
 app.controller("driverCtrl", function($scope, $http, userService) {
+    $scope.currentRequest = "";
+
     $scope.onLoad = function() {
         var user = userService.getUser();
 
@@ -33,6 +35,7 @@ app.controller("driverCtrl", function($scope, $http, userService) {
 
     $scope.acceptRide = function(reqNum) {
         console.log('Request accepted for request #: ' + reqNum);
+        $scope.currentRequest = reqNum;
     }
 
     /*
