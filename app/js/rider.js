@@ -37,6 +37,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                 'Error: Your browser doesn\'t support geolocation.');
         };
 
+        console.log("navigator.geolocation", navigator.geolocation);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
