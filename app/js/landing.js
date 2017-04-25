@@ -34,6 +34,7 @@ app.controller("landingCtrl", function($scope, $location, userService) {
             if (data != "false") {
                 // set current user
                 userService.setUser(JSON.parse(data));
+                console.log(userService.getUser());
 
                 // go to rider page
                 $location.path("/rider");
