@@ -38,7 +38,7 @@
 <div class="jumbotron title-box">
     <h1>Rider Profile</h1>
     <p>{{ user.email }}</p>
-    <button ng-if="user.is_driver == '1'" type="submit" class="btn btn-default" ng-click="document.location.href='#/driver'">Switch to driver</button>
+    <button ng-if="user.is_driver == '1'" type="submit" class="btn btn-default" onclick="document.location.href='#/driver'">Switch to driver</button>
     <button type="submit" class="btn btn-default" ng-click="logout()">Logout</button>
 </div>
 
