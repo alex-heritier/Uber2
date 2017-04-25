@@ -11,7 +11,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         // check if user is an object
         if ($scope.user == null) {
             // if no user then go to landing page
-            document.location.href="#/";
+           // document.location.href="#/";
         }
         console.log($scope.user);
     };
@@ -26,7 +26,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
 
     $scope.initMap = function(map) {
         $scope.map = map;
-
+	var trafficLayer = new google.maps.TrafficLayer();
+	trafficLayer.setMap(map);
         var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
@@ -61,38 +62,59 @@ app.controller("riderCtrl", function($scope, $location, userService) {
 	$scope.getETA = function() {
         let map = $scope.map;
     	let origin1, destinationA;
+	var check = 0;
 
         if ($scope.location)
+	{
+	    check =1;
             origin1 = $scope.location;
+	}
         else
+	{
+	    check = 0;
             origin1 = map.getCenter();
+	}
 
     	if ($scope.destination)
+	{
             destinationA = $scope.destination;
+	    $scope.canSubmit = true;
+	}
     	else
-            destinationA = '200 E Santa Clara St San Jose CA';
+	{
+            $scope.canSubmit = false;
+            destinationA = '1 Washington Square San Jose';
+	}
 
         let geocoder = new google.maps.Geocoder();
+	if (check ==1)
+	{
         geocoder.geocode({'address': origin1}, function(results, status) {
             if (status == 'OK') {
                 origin1 = results[0].geometry.location;
-                geocoder.geocode({'address': destinationA}, function(results, status) {
+                            }
+	     else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+                return;
+            }
+        });
+	}
+	
+
+	geocoder.geocode({'address': destinationA}, function(results, status) {
                     if (status == 'OK') {
                         destinationA = results[0].geometry.location;
-                        geocodingCallback();
+			geocodingCallback();
                     } else {
                         console.log('Geocode was not successful for the following reason: ' + status);
                             return;
                     }
                 });
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-                return;
-            }
-        });
+
+	
         console.log("origin1: ", origin1);
         console.log("destinationA: ", destinationA);
-        $scope.canSubmit = true;
+        //$scope.canSubmit = true;
 
         function geocodingCallback() {
         	var service = new google.maps.DistanceMatrixService();
@@ -118,6 +140,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
             };
          	map = new google.maps.Map($('#map').get(0), mapOptions);
           	directionsDisplay.setMap(map);
+		var trafficLayer = new google.maps.TrafficLayer();
+		trafficLayer.setMap(map);
 
         	directionsService.route(request, function(result, status) {
         		if (status == 'OK') {
@@ -150,26 +174,39 @@ app.controller("riderCtrl", function($scope, $location, userService) {
 
     $scope.requestRide = function() {
         let geocoder = new google.maps.Geocoder();
-        var location = $scope.location;
+	var check = 0;
+	if($scope.location)
+	{
+        	var location = $scope.location;
+		check = 1;
+	}
+	else {
+		location = $scope.map.getCenter();
+		check = 0;
+	}
 
         if (!$scope.canSubmit) { alert("Invalid location"); return; }
 
         console.log(location);
+	if(check ==1)
+	{
         geocoder.geocode({'address': location}, function(results, status) {
             if (status == 'OK') {
                 location = results[0].geometry.location;
                 console.log(location);
-                $.post(window.root + "app/server/request.php",
-                    {email: $scope.user.email, lat: location.lat, lng: location.lng},
-                    function(data) {
-                        console.log(data);
-                    }
-                );
+                 
             } else {
                 console.log('Geocode was not successful for the following reason: ' + status);
                 return;
             }
         });
+	}
+	$.post(window.root + "app/server/request.php",
+                    {email: $scope.user.email, lat: location.lat, lng: location.lng},
+                    function(data) {
+                        console.log(data);
+		}
+                );
     };
 
     $scope.logout = function() {
