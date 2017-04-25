@@ -56,7 +56,7 @@ app.controller("driverCtrl", function($scope, $location, $http, userService) {
     };
 
     $scope.checkRequest = function(reqNum) {
-        if($scope.user.user_id == req[2] && 'in_progress' == req[6]){
+        if($scope.user.user_id == reqNum[2] && 'in_progress' == reqNum[6]){
             return true;
         } else {
             return false;
