@@ -3,11 +3,11 @@ body {
     background-image: url(../img/landing-bg.jpg);
 }
 
-.content-box {
+.title-box {
     margin-top: 50px;
 }
 
-.content-box h1 {
+.title-box h1 {
     font-size: 6rem;
 }
 
@@ -20,7 +20,11 @@ body {
     text-align: center;
 }
 
-.login-box, .login-box button input {
+.login-box .btn {
+    margin-bottom: 10px;
+}
+
+.content-box {
     margin-bottom: 10px;
 }
 
