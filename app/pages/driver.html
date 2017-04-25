@@ -39,6 +39,7 @@
         <span>lat: {{ req[2] }}</span><br>
         <span>lng: {{ req[3] }}</span><br>
         <span>time: {{ req[4] }}</span><br>
+        <span>status: {{ req[5] }}</span><br>
         <button ng-if="currentRequest == ''" ng-click="acceptRide(req[0])">Accept Request</button>
         <button ng-if="currentRequest == req[0]" ng-click="cancelRide(req[0])">Cancel Request</button>
     </div>
