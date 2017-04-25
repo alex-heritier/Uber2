@@ -34,12 +34,18 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     };
 
     $scope.acceptRide = function(reqNum) {
-        console.log('Request accepted for request #: ' + reqNum);
-        $scope.currentRequest = reqNum;
+        console.log('Request accepted for request #: ' + reqNum[5]);
+        $scope.currentRequest = reqNum[5];
+        $.post(window.root + "app/server/acceptRide.php",
+            {request: reqNum[5], user: reqNum[0]},
+            function(data) {
+                console.log(data);
+            }
+        );
     };
 
     $scope.cancelRide = function(reqNum) {
-        console.log('Request cancelled for request #: ' + reqNum);
+        console.log('Request cancelled for request #: ' + reqNum[0]);
         $scope.currentRequest = "";
     };
 
