@@ -3,13 +3,13 @@
 app.controller("driverCtrl", function($scope, $http, userService) {
 
     $scope.onLoad = function() {
-        var user = userService.getUser();
+        $scope.user = userService.getUser();
 
         // check if user is an object
-        if (user == null) {
+        if ($scope.user == null) {
             //document.location.href = "#/"; // go to landing
         }
-        console.log(user);
+        console.log($scope.user);
 
         // check if google maps is loaded (should be)
         /*if (window.google == undefined) {
@@ -32,24 +32,24 @@ app.controller("driverCtrl", function($scope, $http, userService) {
             })
     };
 
-    $scope.acceptRide = function(reqNum) {
+    $scope.acceptRide = function(reqNum, userNum) {
         console.log('Request accepted for request #: ' + reqNum[0]);
         $scope.currentRequest = reqNum[0];
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/acceptRide.php",
-            {request: reqNum[0], user: reqNum[1]},
+            {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
         );
     };
 
-    $scope.cancelRide = function(reqNum) {
+    $scope.cancelRide = function(reqNum, userNum) {
         console.log('Request cancelled for request #: ' + reqNum[0]);
-        $scope.currentRequest = "";
+        $scope.currentRequest = '';
         console.log($scope.currentRequest);
         $.post(window.root + "app/server/cancelRide.php",
-            {request: reqNum[0], user: reqNum[1]},
+            {request: reqNum[0], user: reqNum[1], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
@@ -57,8 +57,12 @@ app.controller("driverCtrl", function($scope, $http, userService) {
     };
 
     $scope.checkRides = function(reqNum) {
-        if (reqNum[5] == 'in_progress') {
+        if (reqNum[5] == 'in_progress' && $scope.user.user_id == reqNum[6]) {
             $scope.currentRequest = reqNum[0];
+        } else if (reqNum[5] == 'in_progress') {
+            $scope.currentRequest = -1;
+        } else {
+            $scope.currentRequest = '';
         }
     };
 
