@@ -16,7 +16,6 @@ app.controller("driverCtrl", function($scope, $http, userService) {
             document.location.href = "#/"; // go to landing
         }*/
         $scope.currentRequest = "";
-        $scope.checkRides();
         $scope.setRequests();
     };
 
