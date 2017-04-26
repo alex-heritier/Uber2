@@ -2,9 +2,9 @@
 
 $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : NULL;
 
-$server = "uber2.db";
-$username = "aheritier";
-$password = "?u--&a%2+@F=2";
+$server = "localhost";
+$username = "root";
+$password = "";
 $db = "uber2";
 
 // Create connection

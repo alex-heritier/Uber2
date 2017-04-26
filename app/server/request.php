@@ -4,9 +4,9 @@ $email = $_POST['email'];
 $lat = $_POST['lat'];
 $lng = $_POST['lng'];
 
-$server = "uber2.db";
-$username = "aheritier";
-$password = "?u--&a%2+@F=2";
+$server = "localhost";
+$username = "root";
+$password = "";
 $db = "uber2";
 
 // Create connection

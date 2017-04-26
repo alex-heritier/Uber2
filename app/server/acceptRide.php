@@ -4,9 +4,9 @@ $user_id = $_POST['user'];
 $request_id = $_POST['request'];
 $driver_id = $_POST['driver'];
 
-$server = "uber2.db";
-$username = "aheritier";
-$password = "?u--&a%2+@F=2";
+$server = "localhost";
+$username = "root";
+$password = "";
 $db = "uber2";
 
 // Create connection

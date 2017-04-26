@@ -6,9 +6,9 @@ $user_email = $_POST['email'];
 $user_pass = $_POST['password'];
 $user_driver_status = $_POST['driverStatus'] == "false" ? 0 : 1;
 
-$server = "uber2.db";
-$username = "aheritier";
-$password = "?u--&a%2+@F=2";
+$server = "localhost";
+$username = "root";
+$password = "";
 $db = "uber2";
 
 // Create connection
