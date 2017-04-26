@@ -7,6 +7,9 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         $scope.active = "rider";
 
         $scope.user = userService.getUser();
+	$scope.rideStatus = new Object();
+	rideStatus.user = $scope.user;
+	rideStatus.value = 'none';
 
         // check if user is an object
         if ($scope.user == null) {
@@ -16,7 +19,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         console.log($scope.user);
         
         $scope.updateRideStatus();
-        setInterval($scope.updateRideStatus, 1000 * 5);    // update ride status every 10s
+        setInterval($scope.updateRideStatus(), 1000 * 5);    // update ride status every 10s
     };
 
     $scope.setDestination = function() {
@@ -213,12 +216,12 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                   console.log(data);
                   try {
                       var rideData = JSON.parse(data)[0]; 
-                      $scope.rideStatus = rideData["status"];
+                      $scope.rideStatus.value = rideData["status"];
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
-                      $scope.rideStatus = "none";
+                      $scope.rideStatus.value = "none";
                   }
-                  console.log("RIDE REQUEST STATUS: ", $scope.rideStatus);
+                  console.log("RIDE REQUEST STATUS: ", $scope.rideStatus.value);
                   $scope.$apply();
               }
         );
