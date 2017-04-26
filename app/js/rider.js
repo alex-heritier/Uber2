@@ -121,6 +121,10 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                  origins: [origin1],
                  destinations: [destinationA],
                  travelMode: 'DRIVING',
+		 drivingOptions:{
+			departureTime: new Date(Date.now()+10000),
+			trafficModel: 'bestguess'
+		 }
                  unitSystem: google.maps.UnitSystem.IMPERIAL,
             }, distanceMatrixCallback);
 
