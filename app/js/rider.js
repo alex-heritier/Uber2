@@ -1,12 +1,14 @@
 'use strict';
 
-app.controller("riderCtrl", function($scope, $location, userService) {
+app.controller("riderCtrl", function($scope, $location, userService, mapService) {
     $scope.init = function() {
         $scope.map = undefined;
         $scope.canSubmit = false;
         $scope.active = "rider";
+        $scope.rideStatus = "none";
 
         $scope.user = userService.getUser();
+	$scope.rideStatus = new Object();
 
         // check if user is an object
         if ($scope.user == null) {
@@ -16,7 +18,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         console.log($scope.user);
         
         $scope.updateRideStatus();
-        setInterval($scope.updateRideStatus, 1000 * 5);    // update ride status every 10s
+        setInterval($scope.updateRideStatus, 1000 * 5);    // update ride status every 5s
     };
 
     $scope.setDestination = function() {
@@ -29,8 +31,8 @@ app.controller("riderCtrl", function($scope, $location, userService) {
 
     $scope.initMap = function(map) {
         $scope.map = map;
-    var trafficLayer = new google.maps.TrafficLayer();
-    trafficLayer.setMap(map);
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
         var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
@@ -118,6 +120,10 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                  origins: [origin1],
                  destinations: [destinationA],
                  travelMode: 'DRIVING',
+		 drivingOptions:{
+			departureTime: new Date(Date.now()+10000),
+			trafficModel: 'bestguess'
+		 },
                  unitSystem: google.maps.UnitSystem.IMPERIAL,
             }, distanceMatrixCallback);
 
@@ -222,5 +228,11 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                   $scope.$apply();
               }
         );
+    };
+    
+    $scope.setMap = function() {
+        console.log("IN SET MAP");
+        console.log("WINDOW.MAP: ", window.map);
+        $('#map-container').append($(window.map));
     };
 });

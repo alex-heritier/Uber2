@@ -43,7 +43,7 @@
 </div>
 
 <!-- no current ride request -->
-<div ng-if="rideStatus == 'none'" class="jumbotron content-box">
+<div ng-init="rideStatus = 'none'" ng-hide="rideStatus != 'none'" class="jumbotron content-box">
     <form>
         <div class="form-group">
             <label for="destination">Enter your location: </label>
@@ -63,21 +63,21 @@
     <ul>
         <li>Distance: <span>{{ distance }}</span></li>
         <li>Time: <span>{{ duration }}</span></li>
-	    <li>Cost: $<span>{{ cost }}</span></li>
+        <li>Cost: $<span>{{ cost }}</span></li>
     </ul>
 
-    <div id="map"></div>
+    <div ng-init="setMap()" id="map-container"></div>
     </div>
 </div>
 
 <!-- pending ride request -->
-<div ng-if="rideStatus == 'pending'" class="jumbotron content-box">
+<div ng-hide="rideStatus != 'pending'" class="jumbotron content-box">
     <p>Please wait while we find you a driver.</p>
 </div>
 
 <!-- in progress ride request -->
-<div ng-if="rideStatus == 'in_progress'" class="jumbotron content-box">
-    <p>We found you a driver!</p>
+<div ng-hide="rideStatus != 'in_progress'" class="jumbotron content-box">
+    <p>We found you a driver! They are now on their way to pick you up.</p>
 </div>
 
 <!-- GOOGLE MAPS -->
@@ -85,7 +85,7 @@
     'use strict';
 
     function initMap() {
-        let map = new google.maps.Map($('#map').get(0), {
+        let map = new google.maps.Map(window.map, {
             center: {lat: 37.335, lng: -121.881},
             zoom: 10
         });
