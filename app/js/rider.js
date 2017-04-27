@@ -219,12 +219,12 @@ app.controller("riderCtrl", function($scope, $location, userService) {
                   console.log(data);
                   try {
                       var rideData = JSON.parse(data)[0]; 
-                      $scope.rideStatus.value = rideData["status"];
+                      $scope.rideStatus = rideData["status"];
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
-                      $scope.rideStatus.value = "none";
+                      $scope.rideStatus = "none";
                   }
-                  console.log("RIDE REQUEST STATUS: ", $scope.rideStatus.value);
+                  console.log("RIDE REQUEST STATUS: ", $scope.rideStatus);
                   $scope.$apply();
               }
         );
