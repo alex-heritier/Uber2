@@ -66,7 +66,7 @@
         <li>Cost: $<span>{{ cost }}</span></li>
     </ul>
 
-    <div id="map"></div>
+    <div ng-load="setMap()" id="map-container"></div>
     </div>
 </div>
 
@@ -85,12 +85,12 @@
     'use strict';
 
     function initMap() {
-        let mapElement = $('#map').get();
+        window.map = $('<div></div>').attr({id: "map"}).get(0);
         
         console.log("IN INIT MAP");
-        console.log("MAP: ", mapElement);
+        console.log("MAP: ", window.map);
         
-        let map = new google.maps.Map(mapElement, {
+        let map = new google.maps.Map(window.map, {
             center: {lat: 37.335, lng: -121.881},
             zoom: 10
         });
