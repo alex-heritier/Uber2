@@ -20,6 +20,7 @@ if ($_SERVER['HTTPS'] != "on") {
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="app/js/app.js"></script>
     <script src="app/js/userService.js"></script>
+    <script src="app/js/mapService.js"></script>
     <script src="app/js/landing.js"></script>
     <script src="app/js/about.js"></script>
     <script src="app/js/register.js"></script>
