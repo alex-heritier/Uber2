@@ -85,8 +85,6 @@
     'use strict';
 
     function initMap() {
-        window.map = $('<div></div>').attr({id: "map"}).get(0);
-        
         let map = new google.maps.Map(window.map, {
             center: {lat: 37.335, lng: -121.881},
             zoom: 10

@@ -232,6 +232,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     
     $scope.setMap = function() {
         console.log("IN SET MAP");
+        console.log("WINDOW.MAP: ", window.map);
         $('#map-container').append($(window.map));
     };
 });
