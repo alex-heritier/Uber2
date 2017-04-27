@@ -43,7 +43,7 @@
 </div>
 
 <!-- no current ride request -->
-<div ng-if="rideStatus.user == user && rideStatus.value == 'none'" class="jumbotron content-box">
+<div ng-init="rideStatus = 'none'" ng-if="rideStatus.user == user && rideStatus.value == 'none'" class="jumbotron content-box">
     <form>
         <div class="form-group">
             <label for="destination">Enter your location: </label>
