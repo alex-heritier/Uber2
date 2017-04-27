@@ -1,5 +1,6 @@
 'use strict';
 
 app.factory("mapService", function() {
-    window.map = $("<div></div>").attr({id: "map"}).get(0);
+    if (window.map == undefined)
+        window.map = $("<div></div>").attr({id: "map"}).get(0);
 });

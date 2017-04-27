@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("riderCtrl", function($scope, $location, userService) {
+app.controller("riderCtrl", function($scope, $location, userService, mapService) {
     $scope.init = function() {
         $scope.map = undefined;
         $scope.canSubmit = false;
