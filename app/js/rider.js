@@ -5,11 +5,10 @@ app.controller("riderCtrl", function($scope, $location, userService) {
         $scope.map = undefined;
         $scope.canSubmit = false;
         $scope.active = "rider";
+        $scope.rideStatus = "none";
 
         $scope.user = userService.getUser();
 	$scope.rideStatus = new Object();
-	rideStatus.user = $scope.user;
-	rideStatus.value = 'none';
 
         // check if user is an object
         if ($scope.user == null) {
