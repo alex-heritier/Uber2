@@ -43,7 +43,7 @@
 </div>
 
 <!-- no current ride request -->
-<div ng-init="rideStatus = 'none'" ng-if="rideStatus.user == user && rideStatus.value == 'none'" class="jumbotron content-box">
+<div ng-init="rideStatus = 'none'" ng-if="rideStatus == 'none'" class="jumbotron content-box">
     <form>
         <div class="form-group">
             <label for="destination">Enter your location: </label>
@@ -71,12 +71,12 @@
 </div>
 
 <!-- pending ride request -->
-<div ng-if="rideStatus.user == user && rideStatus.value == 'pending'" class="jumbotron content-box">
+<div ng-if="rideStatus == 'pending'" class="jumbotron content-box">
     <p>Please wait while we find you a driver.</p>
 </div>
 
 <!-- in progress ride request -->
-<div ng-if="rideStatus.user == user && rideStatus.value == 'in_progress'" class="jumbotron content-box">
+<div ng-if="rideStatus == 'in_progress'" class="jumbotron content-box">
     <p>We found you a driver!</p>
 </div>
 
