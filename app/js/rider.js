@@ -231,6 +231,7 @@ app.controller("riderCtrl", function($scope, $location, userService) {
     };
     
     $scope.setMap = function() {
+        console.log("IN SET MAP");
         $('#map-container').append(window.map);
     };
 });
