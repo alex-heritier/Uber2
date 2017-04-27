@@ -43,7 +43,7 @@
 </div>
 
 <!-- no current ride request -->
-<div ng-init="rideStatus = 'none'"  class="jumbotron content-box">
+<div ng-init="rideStatus = 'none'" ng-hide="rideStatus != 'none'" class="jumbotron content-box">
     <form>
         <div class="form-group">
             <label for="destination">Enter your location: </label>
@@ -63,7 +63,7 @@
     <ul>
         <li>Distance: <span>{{ distance }}</span></li>
         <li>Time: <span>{{ duration }}</span></li>
-	    <li>Cost: $<span>{{ cost }}</span></li>
+        <li>Cost: $<span>{{ cost }}</span></li>
     </ul>
 
     <div id="map"></div>
@@ -85,7 +85,12 @@
     'use strict';
 
     function initMap() {
-        let map = new google.maps.Map($('#map').get(), {
+        let mapElement = $('#map').get();
+        
+        console.log("IN INIT MAP");
+        console.log("MAP: ", mapElement);
+        
+        let map = new google.maps.Map(mapElement, {
             center: {lat: 37.335, lng: -121.881},
             zoom: 10
         });
