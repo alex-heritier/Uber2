@@ -71,9 +71,9 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             if($scope.user.user_id == req["driver"] && 'in_progress' == req["status"]){
                 $scope.available = false;
             }
-            if($scope.user.user_id == req["driver"] && 'pending' == req["status"]){
-                $scope.available = true;
-            }
+        }
+        if($scope.available != false){
+            $scope.available = true;
         }
     };
     
