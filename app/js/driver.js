@@ -32,7 +32,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 $rootScope.$apply();
                 console.log("$scope.requests: ", $scope.requests);
             });
-        
     };
 
     $scope.acceptRide = function(reqNum, userNum) {
@@ -44,6 +43,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 console.log(data);
             }
         );
+        $scope.available = false;
         $scope.setRequests();
     };
 
