@@ -74,6 +74,8 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             console.log($scope.user.user_id)
             if($scope.user.user_id == req["driver"] && 'in_progress' == req["status"]){
                 $scope.available = false;
+            } else {
+                $scope.available = true;
             }
         }
     };
