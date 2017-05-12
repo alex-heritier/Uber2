@@ -43,7 +43,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 console.log(data);
             }
         );
-        $scope.setRequests();
+        $scope.available = false;
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
@@ -55,7 +55,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 console.log(data);
             }
         );
-        $scope.setRequests();
+        $scope.available = true;
     };
 
     $scope.checkRequest = function(reqNum) {
