@@ -16,7 +16,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
         }*/
-        
+        $scope.checkBusy();
         $scope.setRequests();
     };
 
@@ -28,7 +28,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
-                $scope.checkBusy();
                 $rootScope.$apply();
                 console.log("$scope.requests: ", $scope.requests);
             });
@@ -44,6 +43,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             }
         );
         $scope.available = false;
+        $scope.setRequests();
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
@@ -56,6 +56,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             }
         );
         $scope.available = true;
+        $scope.setRequests();
     };
 
     $scope.checkRequest = function(reqNum) {
