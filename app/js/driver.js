@@ -16,8 +16,8 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         /*if (window.google == undefined) {
             document.location.href = "#/"; // go to landing
         }*/
-        $scope.checkBusy();
         $scope.setRequests();
+        $scope.checkBusy();
     };
 
     $scope.$on('$routeChangeSuccess', function () {
