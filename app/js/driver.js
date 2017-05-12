@@ -4,7 +4,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
     $scope.onLoad = function() {
         $scope.user = userService.getUser();
         $scope.active = "driver";
-        $scope.available = true;
         
         // check if user is an object
         if ($scope.user == null || $scope.user.is_driver != "1") {
@@ -17,7 +16,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             document.location.href = "#/"; // go to landing
         }*/
         $scope.setRequests();
-        $scope.checkBusy();
     };
 
     $scope.$on('$routeChangeSuccess', function () {
@@ -28,6 +26,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
+                $scope.checkBusy();
                 $rootScope.$apply();
                 console.log("$scope.requests: ", $scope.requests);
             });
@@ -35,27 +34,23 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
 
     $scope.acceptRide = function(reqNum, userNum) {
         console.log('Request accepted for request #: ' + reqNum[0]);
-        console.log($scope.currentRequest);
         $.post(window.root + "app/server/acceptRide.php",
             {request: reqNum["req_id"], user: reqNum["user_id"], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
         );
-        $scope.available = false;
         $scope.setRequests();
     };
 
     $scope.cancelRide = function(reqNum, userNum) {
         console.log('Request cancelled for request #: ' + reqNum["req_id"]);
-        console.log($scope.currentRequest);
         $.post(window.root + "app/server/cancelRide.php",
             {request: reqNum["req_id"], user: reqNum["user_id"], driver: userNum.user_id},
             function(data) {
                 console.log(data);
             }
         );
-        $scope.available = true;
         $scope.setRequests();
     };
 
