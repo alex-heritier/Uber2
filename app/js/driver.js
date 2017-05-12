@@ -43,7 +43,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 console.log(data);
             }
         );
-        $scope.available = false;
         $scope.setRequests();
     };
 
@@ -56,7 +55,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 console.log(data);
             }
         );
-        $scope.available = true;
         $scope.setRequests();
     };
 
