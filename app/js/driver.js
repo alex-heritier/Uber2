@@ -73,7 +73,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 $scope.available = false;
             }
         }
-        if($scope.available != false){
+        if($scope.available == null){
             $scope.available = true;
         }
     };
