@@ -17,7 +17,7 @@ app.controller("riderCtrl", function($scope, $location, $interval, userService, 
         }
         console.log($scope.user);
         
-        $scope.updateRideStatus();    // update ride status every 5s
+        $scope.updateRideStatus();
     };
 
     $scope.setDestination = function() {
@@ -231,7 +231,7 @@ app.controller("riderCtrl", function($scope, $location, $interval, userService, 
               }
         );
 
-        if($scope.rideStatus = "complete"){
+        if($scope.rideStatus = "none"){
             clearInterval($scope.promise);
         }
     };
@@ -245,6 +245,7 @@ app.controller("riderCtrl", function($scope, $location, $interval, userService, 
         );
         $scope.rideStatus = "none";
         $scope.rideData = null;
+        $scope.init();
     };
     
     $scope.setMap = function() {
