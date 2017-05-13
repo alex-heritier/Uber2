@@ -238,6 +238,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
             }
         );
         $scope.rideStatus = "none";
+        $scope.rideData = null;
     };
     
     $scope.setMap = function() {
