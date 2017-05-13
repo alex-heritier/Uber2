@@ -219,7 +219,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
                   console.log(data);
                   try {
                       $scope.rideData = JSON.parse(data)[0]; 
-                      $scope.rideStatus = rideData["status"];
+                      $scope.rideStatus = $scope.rideData["status"];
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
                       $scope.rideStatus = "none";
