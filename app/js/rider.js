@@ -174,6 +174,8 @@ app.controller("riderCtrl", function($scope, $location, $interval, userService, 
     };
 
     $scope.requestRide = function() {
+        $scope.updateRideStatus();
+
         let geocoder = new google.maps.Geocoder();
         var check = 0;
         if($scope.location){
@@ -246,6 +248,7 @@ app.controller("riderCtrl", function($scope, $location, $interval, userService, 
         $scope.rideStatus = "none";
         $scope.rideData = null;
         $scope.init();
+        $scope.initMap();
     };
     
     $scope.setMap = function() {
