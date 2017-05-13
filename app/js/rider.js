@@ -17,8 +17,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
         }
         console.log($scope.user);
         
-        $scope.updateRideStatus();
-        setInterval($scope.updateRideStatus, 1000 * 5);    // update ride status every 5s
+        $scope.updateRideStatus();    // update ride status every 5s
     };
 
     $scope.setDestination = function() {
@@ -206,6 +205,8 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
                 console.log(data);
             }
         );
+
+        $scope.promise = setInterval($scope.updateRideStatus, 1000 * 5);
     };
 
     $scope.logout = function() {
@@ -229,6 +230,10 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
                   $scope.$apply();
               }
         );
+
+        if($scope.rideStatus = "complete"){
+            $interval.cancel(promise);
+        }
     };
 
     $scope.confirmRideComplete =function() {
