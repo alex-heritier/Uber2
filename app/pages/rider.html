@@ -80,6 +80,11 @@
     <p>We found you a driver! They are now on their way to pick you up.</p>
 </div>
 
+<div ng-hide="rideStatus != 'complete'" class="jumbotron content-box">
+    <p>Ride complete!</p>
+    <button ng-click="confirmRideComplete()">Confirm</button>
+</div>
+
 <!-- GOOGLE MAPS -->
 <script>
     'use strict';

@@ -8,7 +8,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
         $scope.rideStatus = "none";
 
         $scope.user = userService.getUser();
-	$scope.rideStatus = new Object();
+	    $scope.rideStatus = new Object();
 
         // check if user is an object
         if ($scope.user == null) {
@@ -218,7 +218,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
               function(data) {
                   console.log(data);
                   try {
-                      var rideData = JSON.parse(data)[0]; 
+                      $scope.rideData = JSON.parse(data)[0]; 
                       $scope.rideStatus = rideData["status"];
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
@@ -228,6 +228,16 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
                   $scope.$apply();
               }
         );
+    };
+
+    $scope.confirmRideComplete =function() {
+        $.post(window.root + "app/server/confirmRideComplete.php",
+            {request: $scope.rideData["req_id"], rider: $scope.user.user_id},
+            function(data) {
+                console.log(data);
+            }
+        );
+        $scope.rideStatus = "none";
     };
     
     $scope.setMap = function() {

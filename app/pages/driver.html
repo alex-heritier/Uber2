@@ -49,8 +49,14 @@
         <span>{{ req["time"] }}</span><br>
         <span>{{ req["status"] }}</span><br>
         <span>{{ req["driver"] }}</span><br>
-        <button ng-if="available && req['status'] == 'pending'" ng-click="acceptRide(req, user)">Accept Request</button>
-        <button ng-if="!available && req['status'] == 'in_progress' && req['driver'] == user.user_id" ng-click="cancelRide(req, user)">Cancel Request</button>
+        <div ng-if="available && req['status'] == 'pending'">
+            <button ng-click="acceptRide(req, user)">Accept Request</button>
+        </div>
+        <div ng-if="!available && req['status'] == 'in_progress' && req['driver'] == user.user_id">
+            <button ng-click="cancelRide(req, user)">Cancel Request</button>
+            <button ng-click="completeRide(req, user)">Ride Completed</button>
+        </div>
+        
     </div>
 </div>
 

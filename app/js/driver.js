@@ -49,6 +49,15 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         $scope.setRequests();
     };
 
+    $scope.completeRide = function(reqNum, userNum) {
+        console.log('Request completed for request #: ' + reqNum["req_id"]);
+        $.post(window.root + "app/server/completeRide.php",
+            {request: reqNum["req_id"], user: reqNum["user_id"], driver: userNum.user_id}
+        );
+        $scope.available = true;
+        $scope.setRequests();
+    }
+
     $scope.checkRequest = function(reqNum) {
         if($scope.user.user_id == reqNum["driver"] && 'in_progress' == reqNum["status"]){
             return true;
