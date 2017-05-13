@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("riderCtrl", function($scope, $location, userService, mapService) {
+app.controller("riderCtrl", function($scope, $location, $interval, userService, mapService) {
     $scope.init = function() {
         $scope.map = undefined;
         $scope.canSubmit = false;
@@ -232,7 +232,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
         );
 
         if($scope.rideStatus = "complete"){
-            $interval.cancel(promise);
+            clearInterval($scope.promise);
         }
     };
 
