@@ -28,7 +28,6 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
                 $scope.requests = JSON.parse(data);
                 $scope.checkBusy();
                 $rootScope.$apply();
-                console.log("$scope.requests: ", $scope.requests);
             });
     };
 

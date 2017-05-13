@@ -21,6 +21,11 @@ if ($user_id != NULL)
     $sql .= " AND req.user_id = '$user_id'";
 
 $result = $conn->query($sql);
+if($result === TRUE) {
+    echo "Get request success";
+} else {
+    echo "Unexpected error: " . $conn->error;
+}
 while($row = $result->fetch_array(MYSQLI_ASSOC)) {
     $arr[] = $row;
 }
