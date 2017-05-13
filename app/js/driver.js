@@ -26,7 +26,7 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
         $.get(window.root + "app/server/get_requests.php",
             function(data) {
                 $scope.requests = JSON.parse(data);
-                $scope.checkBusy();
+                $scope.available = $scope.checkBusy();
                 $rootScope.$apply();
             });
     };
@@ -63,9 +63,10 @@ app.controller("driverCtrl", function($scope, $rootScope, $location, $http, user
             console.log(req);
             console.log($scope.user.user_id)
             if($scope.user.user_id == req["driver"] && 'in_progress' == req["status"]){
-                $scope.available = false;
+                return false;
             }
         }
+        return true;
     };
     
     $scope.logout = function() {
