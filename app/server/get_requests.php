@@ -21,15 +21,15 @@ if ($user_id != NULL) {
     $sql .= " AND req.user_id = '$user_id'";
 }
 
-$result = $conn->query($sql);
-if($result === TRUE) {
+if($result = $conn->query($sql)) {
     echo "Get request success";
+    while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $arr[] = $row;
+    }
+    echo json_encode($arr);
+    $result->close();
 } else {
     echo "Unexpected error: " . $conn->error;
 }
-while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-    $arr[] = $row;
-}
-echo json_encode($arr);
 
 ?>
