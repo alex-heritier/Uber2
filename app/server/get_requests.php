@@ -22,7 +22,6 @@ if ($user_id != NULL) {
 }
 
 if($result = $conn->query($sql)) {
-    echo "Get request success";
     while($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $arr[] = $row;
     }
