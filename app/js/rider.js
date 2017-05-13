@@ -220,6 +220,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
                   try {
                       $scope.rideData = JSON.parse(data)[0]; 
                       $scope.rideStatus = $scope.rideData["status"];
+                      $scope.reqID = $scope.rideData["req_id"];
                   } catch (e) {
                       console.log("EXCEPTION: ", e);
                       $scope.rideStatus = "none";
@@ -232,7 +233,7 @@ app.controller("riderCtrl", function($scope, $location, userService, mapService)
 
     $scope.confirmRideComplete =function() {
         $.post(window.root + "app/server/confirmRideComplete.php",
-            {request: $scope.rideData["req_id"], rider: $scope.user.user_id},
+            {request: $scope.reqID, rider: $scope.user.user_id},
             function(data) {
                 console.log(data);
             }
