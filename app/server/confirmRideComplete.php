@@ -1,6 +1,6 @@
 <?php
 
-$user_id = $_POST['rider']
+$user_id = $_POST['rider'];
 $request_id = $_POST['request'];
 
 $server = "uber2.db";
